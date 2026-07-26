@@ -1,14 +1,16 @@
 {%- comment -%}
-  Hero Banner Section - The Amendment Company
+  Hero Banner Section - The Amendment Company (1776)
+  Exact reference replica: Oswald condensed 2-line headline, left aligned,
+  side-line star divider, red accent bar under headline, dual CTAs.
 {%- endcomment -%}
 
-<div class="hero-banner" style="position: relative; width: 100%; min-height: {{ section.settings.desktop_height }}px; display: flex; align-items: center; justify-content: {{ section.settings.text_alignment }}; overflow: hidden; background-color: var(--color-text-primary);">
+<div class="hero-banner" style="position: relative; width: 100%; min-height: {{ section.settings.desktop_height }}px; display: flex; align-items: center; justify-content: flex-start; overflow: hidden; background-color: var(--color-bg-primary);">
   {%- liquid
     assign hero_img = section.settings.image
     if hero_img != blank
       assign hero_src = hero_img | image_url: width: 2000
     else
-      assign hero_src = 'seedream-5.0-pro_a_remove_all_text_and_.jpeg' | asset_url
+      assign hero_src = 'seedream-5.0-pro_a_replicate_this_iamge.jpeg' | asset_url
     endif
   -%}
   <img
@@ -20,40 +22,57 @@
     style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;"
   >
 
-  <div style="position: absolute; inset: 0; background-color: rgba(13, 27, 42, {{ section.settings.overlay_opacity | divided_by: 100.0 }});"></div>
+  {%- comment -%} Soft Light Parchment Gradient Overlay on the left for crisp contrast {%- endcomment -%}
+  <div style="position: absolute; inset: 0; background: linear-gradient(to right, rgba(248,245,240,0.88) 0%, rgba(248,245,240,0.65) 45%, rgba(248,245,240,0.05) 100%);"></div>
 
-  <div class="page-width" style="position: relative; z-index: 2; padding-top: 5rem; padding-bottom: 5rem; color: #FFFFFF; max-width: 780px; text-align: {{ section.settings.text_alignment }};">
-    {%- if section.settings.subheading != blank -%}
-      <div style="margin-bottom: 0.75rem;">
-        <span class="subheading" style="color: var(--color-accent-gold); display: block; font-size: 0.9rem; letter-spacing: 0.2em;">
-          {{ section.settings.subheading }}
-        </span>
-        <span style="color: var(--color-accent-gold); font-size: 0.85rem; letter-spacing: 0.15em; display: block; margin-top: 0.25rem;">★ ★ ★</span>
+  <div class="page-width" style="position: relative; z-index: 2; padding-top: 5rem; padding-bottom: 5rem; width: 100%; text-align: left;">
+    <div style="max-width: 680px; text-align: left;">
+
+      {%- comment -%} Subheading FAITH. FAMILY. FREEDOM. {%- endcomment -%}
+      {%- if section.settings.subheading != blank -%}
+        <div style="margin-bottom: 0.35rem; text-align: left;">
+          <span style="color: #0D1B2A; display: block; font-size: 0.95rem; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; font-family: var(--font-body);">
+            {{ section.settings.subheading }}
+          </span>
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Side-line Stars Divider ( ──────  ★ ★ ★ ) {%- endcomment -%}
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; text-align: left;">
+        <span style="display: inline-block; width: 75px; height: 1px; background-color: rgba(13, 27, 42, 0.35);"></span>
+        <span style="color: #C5A059; font-size: 0.85rem; letter-spacing: 0.25em;">★ ★ ★</span>
       </div>
-    {%- endif -%}
 
-    {%- if section.settings.heading != blank -%}
-      <h1 style="color: #FFFFFF; font-size: clamp(2.75rem, 5.5vw, 4.5rem); line-height: 1.1; margin-bottom: 1.25rem; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: -0.02em;">
-        {{ section.settings.heading }}
+      {%- comment -%} 2-Line Heavy Display Headline: WE THE PEOPLE / STAND TOGETHER {%- endcomment -%}
+      <h1 style="color: #0D1B2A; font-family: 'Oswald', 'Impact', 'Arial Narrow', sans-serif; font-size: clamp(2.8rem, 5.2vw, 4.4rem); line-height: 1.02; margin-top: 0.25rem; margin-bottom: 0.85rem; text-transform: uppercase; letter-spacing: 0.01em; font-weight: 800; text-align: left; max-width: 640px;">
+        WE THE PEOPLE<br>STAND TOGETHER
       </h1>
-    {%- endif -%}
 
-    {%- if section.settings.text != blank -%}
-      <p style="color: #E2E8F0; font-size: 1.15rem; line-height: 1.6; margin-bottom: 2.25rem; max-width: 620px;">
-        {{ section.settings.text }}
-      </p>
-    {%- endif -%}
+      {%- comment -%} Red Horizontal Accent Line Divider {%- endcomment -%}
+      <div style="width: 200px; height: 3.5px; background-color: #B81D1D; margin: 0.85rem 0 1.35rem 0; border-radius: 2px;"></div>
 
-    <div class="flex items-center gap-md" style="justify-content: {% if section.settings.text_alignment == 'center' %}center{% elsif section.settings.text_alignment == 'right' %}flex-end{% else %}flex-start{% endif %}; flex-wrap: wrap;">
-      {%- if section.settings.button_label_1 != blank -%}
-        {% render 'button', label: section.settings.button_label_1, link: section.settings.button_link_1, style: 'primary' %}
+      {%- comment -%} Supporting Text {%- endcomment -%}
+      {%- if section.settings.text != blank -%}
+        <p style="color: #2D3748; font-size: 1.08rem; line-height: 1.5; margin-bottom: 2rem; max-width: 480px; font-weight: 500; text-align: left;">
+          {{ section.settings.text }}
+        </p>
       {%- endif -%}
 
-      {%- if section.settings.button_label_2 != blank -%}
-        <a href="{{ section.settings.button_link_2 | default: '#' }}" class="btn btn--secondary" style="background-color: var(--color-text-primary); color: #FFFFFF; border: 1px solid var(--color-border-dark);">
-          <span>{{ section.settings.button_label_2 }}</span>
-        </a>
-      {%- endif -%}
+      {%- comment -%} Dual CTA Buttons {%- endcomment -%}
+      <div class="flex items-center gap-md" style="justify-content: flex-start; flex-wrap: wrap; text-align: left;">
+        {%- if section.settings.button_label_1 != blank -%}
+          <a href="{{ section.settings.button_link_1 | default: '#' }}" class="btn" style="background-color: #B81D1D; color: #FFFFFF; font-weight: 800; padding: 0.85rem 2.2rem; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.88rem; border: none;">
+            <span>{{ section.settings.button_label_1 }}</span>
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.button_label_2 != blank -%}
+          <a href="{{ section.settings.button_link_2 | default: '#' }}" class="btn" style="background-color: #0D1B2A; color: #FFFFFF; font-weight: 800; padding: 0.85rem 2.2rem; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.88rem; border: none;">
+            <span>{{ section.settings.button_label_2 }}</span>
+          </a>
+        {%- endif -%}
+      </div>
+
     </div>
   </div>
 </div>
@@ -78,16 +97,6 @@
       "label": "Desktop Height"
     },
     {
-      "type": "range",
-      "id": "overlay_opacity",
-      "min": 0,
-      "max": 90,
-      "step": 5,
-      "default": 40,
-      "unit": "%",
-      "label": "Overlay Opacity"
-    },
-    {
       "type": "text",
       "id": "subheading",
       "label": "Subheading",
@@ -104,17 +113,6 @@
       "id": "text",
       "label": "Description",
       "default": "Patriotic apparel for those who love this country and the values it was built on."
-    },
-    {
-      "type": "select",
-      "id": "text_alignment",
-      "label": "Text Alignment",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "right", "label": "Right" }
-      ],
-      "default": "left"
     },
     {
       "type": "text",

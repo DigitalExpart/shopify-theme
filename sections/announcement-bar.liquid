@@ -3,9 +3,9 @@
 {%- endcomment -%}
 
 {%- if section.settings.show_announcement -%}
-  <div class="announcement-bar" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }}; padding: 0.6rem 1rem; text-align: center; font-size: 0.85rem; font-weight: var(--font-weight-semibold); letter-spacing: 0.08em; text-transform: uppercase; position: relative; z-index: calc(var(--z-header) + 1); border-bottom: 1px solid rgba(197, 160, 89, 0.3);">
+  <div class="announcement-bar" style="background-color: #A31C1C !important; color: #FAF8F5 !important; padding: 0.65rem 1rem; text-align: center; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; position: relative; z-index: calc(var(--z-header) + 1); border-bottom: 1px solid rgba(197, 160, 89, 0.4);">
     <div class="page-width flex-center gap-sm">
-      <span style="color: var(--color-accent-gold); font-size: 0.9rem;">★ ★ ★</span>
+      <span style="color: #C5A059; font-size: 0.9rem;">★ ★ ★</span>
       {%- if section.settings.link != blank -%}
         <a href="{{ section.settings.link }}" style="color: inherit; text-decoration: underline;">
           {{ section.settings.text }}

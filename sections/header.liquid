@@ -3,7 +3,7 @@
 {%- endcomment -%}
 
 <header class="header" data-header-sticky style="background-color: var(--color-bg-primary); border-bottom: 1px solid var(--color-border); position: sticky; top: 0; z-index: var(--z-header); box-shadow: var(--shadow-sm); transition: transform var(--transition-base);">
-  <div class="page-width flex-between" style="height: var(--header-height); gap: 1rem;">
+  <div class="page-width flex-between" style="height: 95px; gap: 1.5rem;">
 
     {%- comment -%} Mobile Menu Toggle {%- endcomment -%}
     <button type="button" class="icon-btn mobile-only" data-drawer-trigger="mobile-menu-drawer" aria-label="{{ 'general.accessibility.menu' | t }}" style="display: none;">
@@ -11,17 +11,17 @@
     </button>
 
     {%- comment -%} Brand Logo - Eagle Crest & Text {%- endcomment -%}
-    <div class="header__logo">
-      <a href="{{ routes.root_url }}" style="font-family: var(--font-heading); color: var(--color-text-primary); text-transform: uppercase; text-decoration: none; display: flex; align-items: center; gap: 0.75rem;">
+    <div class="header__logo" style="margin-right: auto; padding-left: 0;">
+      <a href="{{ routes.root_url }}" style="font-family: var(--font-heading); color: var(--color-text-primary); text-transform: uppercase; text-decoration: none; display: flex; align-items: center;">
         {%- liquid
           assign logo_img = section.settings.logo
           if logo_img != blank
-            assign logo_src = logo_img | image_url: width: 360
+            assign logo_src = logo_img | image_url: width: 440
           else
             assign logo_src = 'seedream-5.0-pro_a_help_me_recrete_this.jpeg' | asset_url
           endif
         -%}
-        <img src="{{ logo_src }}" alt="{{ shop.name | escape }}" width="180" height="48" style="object-fit: contain; max-height: 52px;">
+        <img src="{{ logo_src }}" alt="{{ shop.name | escape }}" width="220" height="60" style="object-fit: contain; max-height: 65px; width: auto;">
       </a>
     </div>
 
