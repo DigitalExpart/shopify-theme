@@ -1,0 +1,29 @@
+{%- comment -%}
+  Related Products Section Template
+{%- endcomment -%}
+
+<div class="related-products section-spacing" style="background-color: var(--color-bg-tertiary); border-top: 1px solid var(--color-border);">
+  <div class="page-width">
+    <div style="text-align: center; margin-bottom: 2.5rem;">
+      <span class="subheading">Complete Your Look</span>
+      <h2>You May Also Like</h2>
+    </div>
+
+    <div class="grid grid--4-col">
+      {%- for recommendations in recommendations.products limit: 4 -%}
+        {% render 'product-card', product_card_product: recommendations, show_vendor: true %}
+      {%- else -%}
+        {%- for i in (1..4) -%}
+          {% render 'product-card', show_vendor: true %}
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Related Products",
+  "settings": []
+}
+{% endschema %}

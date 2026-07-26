@@ -1,0 +1,25 @@
+{%- comment -%}
+  Renders rating star indicators.
+  Accepts:
+  - rating: {Number} 1 to 5 float value (default: 5)
+  - count: {Number} Number of reviews (optional)
+{%- endcomment -%}
+
+{%- liquid
+  assign rating_val = rating | default: 5
+  assign rating_round = rating_val | round
+-%}
+
+<div class="rating-stars flex items-center gap-xs" aria-label="{{ rating_val }} out of 5 stars">
+  {%- for i in (1..5) -%}
+    <span class="rating-star {%- if i <= rating_round %} is-active{%- endif %}" style="color: var(--color-accent-gold);">
+      {% render 'icon-star' %}
+    </span>
+  {%- endfor -%}
+
+  {%- if count != blank -%}
+    <span style="font-size: 0.8rem; color: var(--color-text-muted); margin-left: 4px;">
+      ({{ count }})
+    </span>
+  {%- endif -%}
+</div>

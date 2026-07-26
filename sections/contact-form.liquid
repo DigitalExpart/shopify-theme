@@ -1,0 +1,68 @@
+{%- comment -%}
+  Contact Page Form Section
+{%- endcomment -%}
+
+<div class="contact-section page-width page-width--narrow section-spacing">
+  {% render 'breadcrumbs' %}
+
+  <div style="text-align: center; margin-bottom: 3rem;">
+    <span class="subheading">{{ section.settings.subheading | default: 'We Are Here to Assist' }}</span>
+    <h1 style="font-size: clamp(2.25rem, 4vw, 3.25rem);">{{ page.title | default: 'Get in Touch' }}</h1>
+    {%- if page.content != blank -%}
+      <div style="margin-top: 1rem; color: var(--color-text-secondary); font-size: 1.05rem;">
+        {{ page.content }}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div style="background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 2.5rem; box-shadow: var(--shadow-sm);">
+    {% form 'contact', id: 'ContactForm' %}
+      {% render 'form-errors', form: form %}
+
+      {%- if form.posted_successfully? -%}
+        <div style="background: #E8F5E9; border: 1px solid var(--color-success); color: var(--color-success); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; font-weight: var(--font-weight-medium);">
+          Thank you for reaching out! A member of our concierge team will respond within 24 hours.
+        </div>
+      {%- endif -%}
+
+      <div class="grid grid--2-col">
+        <div class="field">
+          <label for="ContactForm-name" class="field__label">Name</label>
+          <input type="text" id="ContactForm-name" name="contact[Name]" class="field__input" required>
+        </div>
+        <div class="field">
+          <label for="ContactForm-email" class="field__label">Email Address</label>
+          <input type="email" id="ContactForm-email" name="contact[email]" class="field__input" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="ContactForm-phone" class="field__label">Phone Number (Optional)</label>
+        <input type="tel" id="ContactForm-phone" name="contact[Phone]" class="field__input">
+      </div>
+
+      <div class="field">
+        <label for="ContactForm-body" class="field__label">Message</label>
+        <textarea id="ContactForm-body" name="contact[body]" rows="5" class="field__input" required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn--primary btn--full" style="margin-top: 1rem;">
+        Send Message
+      </button>
+    {% endform %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact Form",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "We Are Here to Assist"
+    }
+  ]
+}
+{% endschema %}

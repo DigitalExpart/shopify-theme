@@ -1,0 +1,69 @@
+{%- comment -%}
+  FAQ Accordion Page Section
+{%- endcomment -%}
+
+<div class="faq-section page-width page-width--narrow section-spacing">
+  {% render 'breadcrumbs' %}
+
+  <div style="text-align: center; margin-bottom: 3.5rem;">
+    <span class="subheading">{{ section.settings.subheading | default: 'Knowledge Base' }}</span>
+    <h1 style="font-size: clamp(2.25rem, 4vw, 3.25rem);">{{ page.title | default: 'Frequently Asked Questions' }}</h1>
+  </div>
+
+  <div class="faq-list" data-accordion-group style="border-top: 1px solid var(--color-border);">
+    {%- for block in section.blocks -%}
+      <div class="accordion__item" style="border-bottom: 1px solid var(--color-border); padding: 1.25rem 0;">
+        <button type="button" class="flex-between" style="width: 100%; text-align: left; font-weight: var(--font-weight-semibold); font-size: 1.15rem; font-family: var(--font-heading);" data-accordion-trigger>
+          <span>{{ block.settings.question }}</span>
+          {% render 'icon-chevron' %}
+        </button>
+        <div class="accordion__content" style="padding-top: 1rem; color: var(--color-text-secondary); font-size: 1rem; line-height: 1.7; display: none;">
+          {{ block.settings.answer }}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "FAQ Accordion",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Knowledge Base"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What is your shipping policy?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>We offer complimentary worldwide express shipping on all orders over $150. Orders are processed within 24 business hours.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Accordion",
+      "blocks": [
+        { "type": "faq_item", "settings": { "question": "What is your return & exchange policy?", "answer": "<p>We accept returns within 30 days of delivery. Items must be in original unworn condition with tags attached.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Are your products covered by a warranty?", "answer": "<p>Yes, all items include a 2-year warranty against manufacturing flaws and material defects.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

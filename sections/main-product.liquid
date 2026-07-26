@@ -1,0 +1,149 @@
+{%- comment -%}
+  Main Product Section Template
+{%- endcomment -%}
+
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign featured_media = current_variant.featured_media | default: product.featured_media
+-%}
+
+<div class="product-section page-width section-spacing" data-section-id="{{ section.id }}">
+  {% render 'breadcrumbs' %}
+
+  <div class="grid grid--2-col gap-2xl items-start" style="margin-top: 1rem;">
+
+    {%- comment -%} Media Gallery Container {%- endcomment -%}
+    <div class="product-gallery" style="position: sticky; top: calc(var(--header-height) + 20px);">
+      <div class="media-wrapper media-wrapper--portrait" style="border-radius: var(--radius-md); margin-bottom: 1rem; border: 1px solid var(--color-border);">
+        {%- if featured_media -%}
+          <img
+            id="ProductMainImage"
+            src="{{ featured_media | image_url: width: 1200 }}"
+            alt="{{ featured_media.alt | escape }}"
+            width="1200"
+            height="1500"
+            loading="eager"
+          >
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+
+      {%- if product.media.size > 1 -%}
+        <div class="product-thumbnails flex gap-sm" style="overflow-x: auto; padding-bottom: 0.5rem;">
+          {%- for media in product.media -%}
+            <button
+              type="button"
+              class="thumbnail-btn {%- if media == featured_media %} is-active{%- endif %}"
+              style="width: 80px; shrink: 0; border: 1px solid var(--color-border); border-radius: var(--radius-sm); overflow: hidden; padding: 0;"
+              onclick="document.getElementById('ProductMainImage').src='{{ media | image_url: width: 1200 }}';"
+            >
+              <img src="{{ media | image_url: width: 160 }}" alt="{{ media.alt | escape }}" width="80" height="100" loading="lazy">
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Product Form & Information Panel {%- endcomment -%}
+    <div class="product-info" style="display: flex; flex-direction: column; gap: 1.25rem;">
+      {%- if product.vendor != blank -%}
+        <span class="subheading">{{ product.vendor }}</span>
+      {%- endif -%}
+
+      <h1 style="font-size: clamp(2rem, 3vw, 2.75rem); line-height: 1.2;">
+        {{ product.title }}
+      </h1>
+
+      {% render 'rating-stars', rating: 4.9, count: 48 %}
+
+      {% render 'price', product: product, use_variant: true, price_class: 'font-size: 1.5rem;' %}
+
+      <div style="border-top: 1px solid var(--color-border); margin-top: 0.5rem; padding-top: 1.25rem;">
+        {% form 'product', product, id: 'ProductForm', class: 'product-form' %}
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+
+          {%- comment -%} Variant Selectors {%- endcomment -%}
+          {%- unless product.has_only_default_variant -%}
+            {%- for option in product.options_with_values -%}
+              <div class="field">
+                <label for="Option-{{ section.id }}-{{ forloop.index0 }}" class="field__label">
+                  {{ option.name }}: <span style="font-weight: normal; color: var(--color-text-muted);">{{ option.selected_value }}</span>
+                </label>
+                <select id="Option-{{ section.id }}-{{ forloop.index0 }}" class="field__input">
+                  {%- for value in option.values -%}
+                    <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
+                      {{ value }}
+                    </option>
+                  {%- endfor -%}
+                </select>
+              </div>
+            {%- endfor -%}
+          {%- endunless -%}
+
+          {%- comment -%} Quantity Selector {%- endcomment -%}
+          <div class="field" style="max-width: 140px;">
+            <label for="Quantity-{{ section.id }}" class="field__label">{{ 'products.product.quantity' | t }}</label>
+            <input type="number" id="Quantity-{{ section.id }}" name="quantity" value="1" min="1" class="field__input" style="text-align: center;">
+          </div>
+
+          {%- comment -%} Buttons: Add to Cart & Dynamic Checkout {%- endcomment -%}
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
+            <button type="submit" name="add" class="btn btn--primary btn--full" {% unless current_variant.available %}disabled{% endunless %}>
+              {%- if current_variant.available -%}
+                {{ 'products.product.add_to_cart' | t }} &bull; {{ current_variant.price | money }}
+              {%- else -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- endif -%}
+            </button>
+
+            {%- if section.settings.show_dynamic_checkout -%}
+              {{ form | payment_button }}
+            {%- endif -%}
+          </div>
+        {% endform %}
+      </div>
+
+      {%- comment -%} Accordion Tabs {%- endcomment -%}
+      <div class="product-accordions" style="margin-top: 1.5rem; border-top: 1px solid var(--color-border);" data-accordion-group>
+
+        <div class="accordion__item is-open" style="border-bottom: 1px solid var(--color-border); padding: 1rem 0;">
+          <button type="button" class="flex-between" style="width: 100%; text-align: left; font-weight: var(--font-weight-semibold); font-size: 1.05rem;" data-accordion-trigger>
+            <span>{{ 'products.product.tab_description' | t }}</span>
+            {% render 'icon-chevron' %}
+          </button>
+          <div class="accordion__content" style="padding-top: 0.75rem; color: var(--color-text-secondary); font-size: 0.95rem; line-height: 1.6;">
+            {{ product.description }}
+          </div>
+        </div>
+
+        <div class="accordion__item" style="border-bottom: 1px solid var(--color-border); padding: 1rem 0;">
+          <button type="button" class="flex-between" style="width: 100%; text-align: left; font-weight: var(--font-weight-semibold); font-size: 1.05rem;" data-accordion-trigger>
+            <span>{{ 'products.product.tab_shipping' | t }}</span>
+            {% render 'icon-chevron' %}
+          </button>
+          <div class="accordion__content" style="padding-top: 0.75rem; color: var(--color-text-secondary); font-size: 0.95rem; line-height: 1.6; display: none;">
+            <p>Complimentary worldwide express shipping on orders over $150. Orders are processed within 24 hours and delivered in eco-friendly protective packaging.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main Product Page",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_dynamic_checkout",
+      "label": "Show dynamic checkout button",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

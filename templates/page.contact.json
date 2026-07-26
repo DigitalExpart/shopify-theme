@@ -1,0 +1,14 @@
+{
+  "name": "Contact Page",
+  "sections": {
+    "contact_form": {
+      "type": "contact-form",
+      "settings": {
+        "subheading": "We Are Here to Assist"
+      }
+    }
+  },
+  "order": [
+    "contact_form"
+  ]
+}

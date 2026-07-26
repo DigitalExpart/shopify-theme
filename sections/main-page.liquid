@@ -1,0 +1,22 @@
+{%- comment -%}
+  Generic Main Page Section
+{%- endcomment -%}
+
+<div class="main-page page-width page-width--narrow section-spacing">
+  {% render 'breadcrumbs' %}
+
+  <h1 style="font-size: clamp(2.25rem, 4vw, 3.25rem); margin-bottom: 2rem; text-align: center;">
+    {{ page.title }}
+  </h1>
+
+  <div class="page-content" style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary);">
+    {{ page.content }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main Page",
+  "settings": []
+}
+{% endschema %}

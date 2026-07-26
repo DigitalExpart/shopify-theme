@@ -1,0 +1,12 @@
+{
+  "name": "Article Details Page",
+  "sections": {
+    "main_article": {
+      "type": "main-article",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main_article"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "About Page",
+  "sections": {
+    "about_story": {
+      "type": "about-story",
+      "settings": {
+        "subheading": "Our History",
+        "heading": "Refining the Art of Everyday Luxury"
+      }
+    }
+  },
+  "order": [
+    "about_story"
+  ]
+}

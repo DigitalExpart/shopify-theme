@@ -1,0 +1,17 @@
+{
+  "name": "FAQ Page",
+  "sections": {
+    "faq_accordion": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_1": { "type": "faq_item", "settings": { "question": "What is your shipping policy?", "answer": "<p>We offer complimentary worldwide express shipping on all orders over $150. Orders are processed within 24 business hours.</p>" } },
+        "faq_2": { "type": "faq_item", "settings": { "question": "What is your return & exchange policy?", "answer": "<p>We accept returns within 30 days of delivery. Items must be in original unworn condition with tags attached.</p>" } },
+        "faq_3": { "type": "faq_item", "settings": { "question": "Are your products covered by a warranty?", "answer": "<p>Yes, all items include a 2-year warranty against manufacturing flaws and material defects.</p>" } }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3"]
+    }
+  },
+  "order": [
+    "faq_accordion"
+  ]
+}

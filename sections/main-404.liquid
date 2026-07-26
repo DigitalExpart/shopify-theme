@@ -1,0 +1,29 @@
+{%- comment -%}
+  Main 404 Page Section
+{%- endcomment -%}
+
+<div class="main-404 page-width page-width--narrow section-spacing" style="text-align: center; padding-top: 6rem; padding-bottom: 6rem;">
+  <span class="subheading" style="font-size: 1rem; color: var(--color-accent-gold);">Error 404</span>
+  <h1 style="font-size: clamp(3rem, 6vw, 5rem); margin-bottom: 1rem; font-family: var(--font-heading);">
+    Page Not Found
+  </h1>
+  <p style="font-size: 1.15rem; color: var(--color-text-secondary); max-width: 500px; margin: 0 auto 2.5rem auto;">
+    The page you are looking for may have been removed, renamed, or is temporarily unavailable.
+  </p>
+
+  <div class="flex-center gap-md">
+    <a href="{{ routes.root_url }}" class="btn btn--primary">
+      Return to Homepage
+    </a>
+    <a href="{{ routes.all_products_collection_url }}" class="btn btn--outline">
+      Explore Catalog
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main 404",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,12 @@
+{
+  "name": "Blog List Page",
+  "sections": {
+    "main_blog": {
+      "type": "main-blog",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main_blog"
+  ]
+}

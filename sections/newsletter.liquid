@@ -1,0 +1,71 @@
+{%- comment -%}
+  Newsletter Signup Section
+{%- endcomment -%}
+
+<div class="newsletter-section section-spacing" style="background-color: var(--color-text-primary); color: #FFFFFF; text-align: center;">
+  <div class="page-width page-width--narrow">
+    <span class="subheading" style="color: var(--color-accent-gold);">
+      {{ section.settings.subheading | default: 'Stay Connected' }}
+    </span>
+    <h2 style="color: #FFFFFF; font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 1rem;">
+      {{ section.settings.heading | default: 'Join the Inner Circle' }}
+    </h2>
+    <p style="color: #94A3B8; font-size: 1.1rem; margin-bottom: 2.25rem;">
+      {{ section.settings.text | default: 'Subscribe to receive private preview access, editorial stories, and complimentary concierge support.' }}
+    </p>
+
+    {% form 'customer', class: 'newsletter-form', style: 'max-width: 520px; margin: 0 auto;' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+        <input
+          type="email"
+          name="contact[email]"
+          class="field__input"
+          placeholder="Enter your email address"
+          required
+          style="flex: 1; min-width: 240px; background-color: #1B293A; border-color: #334155; color: #FFFFFF;"
+        >
+        <button type="submit" class="btn btn--primary">
+          Subscribe
+        </button>
+      </div>
+
+      {%- if form.posted_successfully? -%}
+        <p style="color: var(--color-accent-gold); margin-top: 1rem; font-weight: var(--font-weight-medium);">
+          {{ 'general.newsletter.success' | t }}
+        </p>
+      {%- endif -%}
+    {% endform %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Stay Connected"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Join the Inner Circle"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "Subscribe to receive private preview access, editorial stories, and complimentary concierge support."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}

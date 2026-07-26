@@ -1,0 +1,42 @@
+{%- comment -%}
+  Main Login Section
+{%- endcomment -%}
+
+<div class="main-login page-width page-width--narrow section-spacing">
+  <div style="max-width: 440px; margin: 0 auto; background: var(--color-bg-secondary); border: 1px solid var(--color-border); padding: 2.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+    <h1 style="font-size: 2rem; text-align: center; margin-bottom: 2rem;">
+      {{ 'customer.login_page.title' | t }}
+    </h1>
+
+    {% form 'customer_login' %}
+      {% render 'form-errors', form: form %}
+
+      <div class="field">
+        <label for="CustomerEmail" class="field__label">{{ 'customer.login_page.email' | t }}</label>
+        <input type="email" name="customer[email]" id="CustomerEmail" class="field__input" autocomplete="email" required>
+      </div>
+
+      <div class="field">
+        <label for="CustomerPassword" class="field__label">{{ 'customer.login_page.password' | t }}</label>
+        <input type="password" name="customer[password]" id="CustomerPassword" class="field__input" autocomplete="current-password" required>
+      </div>
+
+      <button type="submit" class="btn btn--primary btn--full" style="margin-top: 1rem;">
+        {{ 'customer.login_page.submit' | t }}
+      </button>
+
+      <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem;">
+        <a href="{{ routes.account_register_url }}" style="color: var(--color-text-primary); text-decoration: underline;">
+          {{ 'customer.login_page.create_account' | t }}
+        </a>
+      </div>
+    {% endform %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main Login",
+  "settings": []
+}
+{% endschema %}

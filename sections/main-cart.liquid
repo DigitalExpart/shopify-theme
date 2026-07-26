@@ -1,0 +1,105 @@
+{%- comment -%}
+  Main Cart Page Section
+{%- endcomment -%}
+
+<div class="main-cart page-width section-spacing">
+  {% render 'breadcrumbs' %}
+
+  <h1 style="font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 2rem; text-align: center;">
+    {{ 'sections.cart.title' | t }}
+  </h1>
+
+  {%- if cart.item_count > 0 -%}
+    <form action="{{ routes.cart_url }}" method="post" id="cart">
+      <div class="grid grid--3-col gap-2xl">
+
+        {%- comment -%} Item Table / List {%- endcomment -%}
+        <div style="grid-column: span 2;">
+          <div style="border-bottom: 2px solid var(--color-border); padding-bottom: 0.75rem; font-weight: var(--font-weight-bold); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; display: flex; justify-content: space-between;">
+            <span>Product</span>
+            <span>Total</span>
+          </div>
+
+          {%- for item in cart.items -%}
+            <div style="display: flex; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 1px solid var(--color-border); align-items: center;">
+              <a href="{{ item.url }}" class="media-wrapper media-wrapper--square" style="width: 100px; shrink: 0;">
+                {%- if item.image -%}
+                  <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}" width="100" height="100" loading="lazy">
+                {%- endif -%}
+              </a>
+
+              <div style="flex: 1;">
+                <h3 style="font-size: 1.1rem; font-family: var(--font-body); font-weight: var(--font-weight-semibold); margin-bottom: 0.25rem;">
+                  <a href="{{ item.url }}">{{ item.product.title }}</a>
+                </h3>
+
+                {%- unless item.product.has_only_default_variant -%}
+                  <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
+                    {{ item.variant.title }}
+                  </p>
+                {%- endunless -%}
+
+                <div class="flex items-center gap-md" style="margin-top: 0.75rem;">
+                  <div class="field" style="margin: 0; max-width: 100px;">
+                    <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0" class="field__input" style="padding: 0.4rem; text-align: center;">
+                  </div>
+
+                  <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" style="font-size: 0.85rem; color: var(--color-cta-bg); text-decoration: underline;">
+                    {{ 'sections.cart.remove' | t }}
+                  </a>
+                </div>
+              </div>
+
+              <div style="font-weight: var(--font-weight-bold); font-size: 1.1rem; text-align: right;">
+                {{ item.final_line_price | money }}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- comment -%} Order Summary Box {%- endcomment -%}
+        <div style="background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 2rem; align-self: flex-start;">
+          <h3 style="font-size: 1.35rem; font-family: var(--font-heading); margin-bottom: 1.5rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem;">
+            Order Summary
+          </h3>
+
+          <div class="flex-between" style="font-size: 1.15rem; font-weight: var(--font-weight-bold); margin-bottom: 1rem;">
+            <span>{{ 'sections.cart.subtotal' | t }}</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+
+          <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 1.5rem; line-height: 1.5;">
+            {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t }}
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <button type="submit" name="update" class="btn btn--outline btn--full">
+              Update Quantities
+            </button>
+            <button type="submit" name="checkout" class="btn btn--primary btn--full">
+              {{ 'sections.cart.checkout' | t }}
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  {%- else -%}
+    <div style="text-align: center; padding: 4rem 1rem;">
+      <p style="font-size: 1.25rem; color: var(--color-text-primary); margin-bottom: 1.5rem;">
+        {{ 'sections.cart.empty' | t }}
+      </p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">
+        {{ 'sections.cart.continue_shopping' | t }}
+      </a>
+    </div>
+  {%- endif -%}
+
+</div>
+
+{% schema %}
+{
+  "name": "Main Cart",
+  "settings": []
+}
+{% endschema %}

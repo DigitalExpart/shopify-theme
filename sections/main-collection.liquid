@@ -1,0 +1,72 @@
+{%- comment -%}
+  Main Collection Section
+{%- endcomment -%}
+
+{%- paginate collection.products by 12 -%}
+  <div class="main-collection page-width section-spacing">
+    {% render 'breadcrumbs' %}
+
+    {%- comment -%} Collection Header Banner {%- endcomment -%}
+    <div class="collection-header" style="text-align: center; margin-bottom: 3rem; background: var(--color-bg-secondary); padding: 3rem 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+      <h1 style="font-size: clamp(2.25rem, 4vw, 3.25rem); margin-bottom: 0.75rem;">
+        {{ collection.title }}
+      </h1>
+      {%- if collection.description != blank -%}
+        <div style="max-width: 680px; margin: 0 auto; color: var(--color-text-secondary); font-size: 1.05rem; line-height: 1.6;">
+          {{ collection.description }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Toolbar (Product Count & Sort By) {%- endcomment -%}
+    <div class="flex-between" style="margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--color-border); flex-wrap: wrap; gap: 1rem;">
+      <span style="color: var(--color-text-muted); font-size: 0.95rem;">
+        {{ 'sections.collection.product_count' | t: count: collection.products_count }}
+      </span>
+
+      <div class="flex items-center gap-sm">
+        <label for="SortBy" style="font-size: 0.9rem; font-weight: var(--font-weight-semibold);">
+          {{ 'sections.collection.sort_by' | t }}:
+        </label>
+        <select id="SortBy" class="field__input" style="padding: 0.5rem 1rem; font-size: 0.9rem; width: auto;" onchange="location.href = this.value;">
+          {%- for option in collection.sort_options -%}
+            <option value="{{ option.value | escape }}" {% if option.value == collection.sort_by %}selected="selected"{% endif %}>
+              {{ option.name }}
+            </option>
+          {%- endfor -%}
+        </select>
+      </div>
+    </div>
+
+    {%- comment -%} Product Grid {%- endcomment -%}
+    {%- if collection.products.size > 0 -%}
+      <div class="grid grid--4-col">
+        {%- for product in collection.products -%}
+          {% render 'product-card', product_card_product: product, show_vendor: true %}
+        {%- endfor -%}
+      </div>
+
+      {% render 'pagination', paginate: paginate %}
+    {%- else -%}
+      <div style="text-align: center; padding: 4rem 1rem;">
+        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">
+          {{ 'sections.collection.empty' | t }}
+        </h3>
+        <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
+          Try adjusting your filters or search terms.
+        </p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">
+          Explore All Products
+        </a>
+      </div>
+    {%- endif -%}
+
+  </div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Main Collection",
+  "settings": []
+}
+{% endschema %}

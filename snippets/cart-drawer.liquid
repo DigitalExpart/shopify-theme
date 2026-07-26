@@ -1,0 +1,80 @@
+<div id="cart-drawer" class="drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="{{ 'sections.cart.title' | t }}">
+  <div class="drawer__header">
+    <h3 style="font-size: 1.25rem; font-family: var(--font-heading); margin: 0;">
+      {{ 'sections.cart.title' | t }}
+    </h3>
+    <button type="button" class="icon-btn" data-drawer-close aria-label="{{ 'general.accessibility.close' | t }}">
+      {% render 'icon-close' %}
+    </button>
+  </div>
+
+  <div class="drawer__body" id="cart-drawer-items">
+    {%- if cart.item_count == 0 -%}
+      <div style="text-align: center; padding: 3rem 1rem;">
+        <div style="margin-bottom: 1rem; color: var(--color-accent-gold);">
+          {% render 'icon-cart' %}
+        </div>
+        <p style="font-size: 1.1rem; color: var(--color-text-primary); font-weight: var(--font-weight-medium); margin-bottom: 0.5rem;">
+          {{ 'sections.cart.empty' | t }}
+        </p>
+        <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 1.5rem;">
+          Looks like you haven't added anything to your cart yet.
+        </p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary btn--sm" data-drawer-close>
+          {{ 'sections.cart.continue_shopping' | t }}
+        </a>
+      </div>
+    {%- else -%}
+      <form action="{{ routes.cart_url }}" method="post" id="CartDrawer-Form">
+        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+          {%- for item in cart.items -%}
+            <div style="display: flex; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--color-border);">
+              <a href="{{ item.url }}" style="width: 80px; shrink: 0;" class="media-wrapper media-wrapper--square">
+                {%- if item.image -%}
+                  <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.title | escape }}" width="80" height="80" loading="lazy">
+                {%- endif -%}
+              </a>
+
+              <div style="flex: 1;">
+                <h4 style="font-size: 0.95rem; font-family: var(--font-body); margin-bottom: 0.2rem;">
+                  <a href="{{ item.url }}">{{ item.product.title }}</a>
+                </h4>
+                {%- unless item.product.has_only_default_variant -%}
+                  <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 0.4rem;">
+                    {{ item.variant.title }}
+                  </p>
+                {%- endunless -%}
+
+                <div class="flex-between">
+                  <span style="font-weight: var(--font-weight-bold); font-size: 0.95rem;">
+                    {{ item.final_line_price | money }}
+                  </span>
+                  <span style="font-size: 0.85rem; color: var(--color-text-muted);">
+                    Qty: {{ item.quantity }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </form>
+    {%- endif -%}
+  </div>
+
+  {%- if cart.item_count > 0 -%}
+    <div class="drawer__footer">
+      <div class="flex-between" style="margin-bottom: 1rem; font-size: 1.1rem; font-weight: var(--font-weight-bold);">
+        <span>{{ 'sections.cart.subtotal' | t }}</span>
+        <span>{{ cart.total_price | money }}</span>
+      </div>
+      <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 1.25rem;">
+        {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t }}
+      </p>
+      <form action="{{ routes.cart_url }}" method="post">
+        <button type="submit" name="checkout" class="btn btn--primary btn--full">
+          {{ 'sections.cart.checkout' | t }}
+        </button>
+      </form>
+    </div>
+  {%- endif -%}
+</div>

@@ -1,0 +1,148 @@
+{%- comment -%}
+  Global Header Section
+{%- endcomment -%}
+
+<header class="header" data-header-sticky style="background-color: var(--color-bg-primary); border-bottom: 1px solid var(--color-border); position: sticky; top: 0; z-index: var(--z-header); transition: transform var(--transition-base), box-shadow var(--transition-base);">
+  <div class="page-width flex-between" style="height: var(--header-height);">
+
+    {%- comment -%} Mobile Menu Drawer Toggle {%- endcomment -%}
+    <button type="button" class="icon-btn mobile-only" data-drawer-trigger="mobile-menu-drawer" aria-label="{{ 'general.accessibility.menu' | t }}" style="display: none;">
+      {% render 'icon-menu' %}
+    </button>
+
+    {%- comment -%} Brand Logo {%- endcomment -%}
+    <div class="header__logo">
+      <a href="{{ routes.root_url }}" style="font-family: var(--font-heading); font-size: 1.65rem; font-weight: var(--font-weight-bold); color: var(--color-text-primary); text-transform: uppercase; letter-spacing: 0.05em;">
+        {%- if section.settings.logo != blank -%}
+          <img src="{{ section.settings.logo | image_url: width: 300 }}" alt="{{ shop.name | escape }}" width="150" height="40">
+        {%- else -%}
+          {{ shop.name }}
+        {%- endif -%}
+      </a>
+    </div>
+
+    {%- comment -%} Desktop Navigation Menu {%- endcomment -%}
+    <nav class="header__nav desktop-only" role="navigation" aria-label="Main Navigation">
+      <ul class="flex items-center gap-lg">
+        {%- for link in section.settings.menu.links -%}
+          <li style="position: relative;" class="nav-item">
+            <a href="{{ link.url }}" class="nav-link" style="font-size: 0.95rem; font-weight: var(--font-weight-medium); padding: 0.5rem 0; display: inline-flex; align-items: center; gap: 0.3rem;">
+              {{ link.title }}
+              {%- if link.links != blank -%}
+                {% render 'icon-chevron' %}
+              {%- endif -%}
+            </a>
+
+            {%- if link.links != blank -%}
+              <ul class="dropdown-menu" style="position: absolute; top: 100%; left: 0; min-width: 220px; background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: var(--radius-sm); box-shadow: var(--shadow-md); padding: 0.75rem 0; opacity: 0; visibility: hidden; transition: all var(--transition-fast); z-index: 10;">
+                {%- for childlink in link.links -%}
+                  <li>
+                    <a href="{{ childlink.url }}" style="display: block; padding: 0.5rem 1.25rem; font-size: 0.9rem; color: var(--color-text-secondary);">
+                      {{ childlink.title }}
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    {%- comment -%} Action Icons (Search, Account, Cart) {%- endcomment -%}
+    <div class="header__icons flex items-center gap-sm">
+      {%- comment -%} Search Trigger {%- endcomment -%}
+      <button type="button" class="icon-btn" data-drawer-trigger="search-drawer" aria-label="{{ 'general.accessibility.search' | t }}">
+        {% render 'icon-search' %}
+      </button>
+
+      {%- comment -%} Account Link {%- endcomment -%}
+      <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="icon-btn" aria-label="Account">
+        {% render 'icon-user' %}
+      </a>
+
+      {%- comment -%} Cart Drawer Trigger {%- endcomment -%}
+      <button type="button" class="icon-btn" data-drawer-trigger="cart-drawer" aria-label="{{ 'general.accessibility.cart' | t }}" style="position: relative;">
+        {% render 'icon-cart' %}
+        <span data-cart-count style="position: absolute; top: 4px; right: 4px; background: var(--color-cta-bg); color: #FFFFFF; font-size: 0.7rem; font-weight: var(--font-weight-bold); width: 18px; height: 18px; border-radius: var(--radius-full); display: {%- if cart.item_count > 0 %}inline-flex{% else %}none{% endif %}; align-items: center; justify-content: center;">
+          {{ cart.item_count }}
+        </span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+{%- comment -%} Mobile Navigation Drawer {%- endcomment -%}
+<div id="mobile-menu-drawer" class="drawer" aria-hidden="true">
+  <div class="drawer__header">
+    <h3 style="font-size: 1.25rem; font-family: var(--font-heading);">Menu</h3>
+    <button type="button" class="icon-btn" data-drawer-close aria-label="Close menu">
+      {% render 'icon-close' %}
+    </button>
+  </div>
+  <div class="drawer__body">
+    <nav>
+      <ul style="display: flex; flex-direction: column; gap: 1rem;">
+        {%- for link in section.settings.menu.links -%}
+          <li style="border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem;">
+            <a href="{{ link.url }}" style="font-size: 1.1rem; font-weight: var(--font-weight-semibold);">
+              {{ link.title }}
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+  </div>
+</div>
+
+{%- comment -%} Search Modal Drawer {%- endcomment -%}
+<div id="search-drawer" class="drawer" aria-hidden="true">
+  <div class="drawer__header">
+    <h3 style="font-size: 1.25rem; font-family: var(--font-heading);">Search Store</h3>
+    <button type="button" class="icon-btn" data-drawer-close aria-label="Close search">
+      {% render 'icon-close' %}
+    </button>
+  </div>
+  <div class="drawer__body">
+    <form action="{{ routes.search_url }}" method="get" role="search">
+      <div class="field">
+        <label for="SearchInput" class="field__label">{{ 'general.search.placeholder' | t }}</label>
+        <input id="SearchInput" type="search" name="q" class="field__input" placeholder="{{ 'general.search.placeholder' | t }}" autocomplete="off">
+      </div>
+      <button type="submit" class="btn btn--primary btn--full" style="margin-top: 1rem;">
+        {{ 'general.search.submit' | t }}
+      </button>
+    </form>
+  </div>
+</div>
+
+<style>
+  @media (max-width: 990px) {
+    .desktop-only { display: none !important; }
+    .mobile-only { display: inline-flex !important; }
+  }
+  .nav-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

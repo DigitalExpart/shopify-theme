@@ -1,0 +1,84 @@
+{%- comment -%}
+  Trust Badges Section
+{%- endcomment -%}
+
+<div class="trust-badges section-spacing" style="background-color: var(--color-bg-tertiary); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <div style="text-align: center; margin-bottom: 2.5rem;">
+        <span class="subheading">{{ section.settings.subheading }}</span>
+        <h2 style="font-size: 2rem;">{{ section.settings.heading }}</h2>
+      </div>
+    {%- endif -%}
+
+    <div class="grid grid--4-col">
+      {%- for block in section.blocks -%}
+        {% render 'icon-card', icon_name: block.settings.icon, title: block.settings.title, subtitle: block.settings.subtitle %}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Trust Badges",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Why Choose Us"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Uncompromising Quality & Service"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge_card",
+      "name": "Trust Badge Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "truck", "label": "Shipping Truck" },
+            { "value": "shield", "label": "Security Shield" },
+            { "value": "refresh", "label": "Returns Refresh" },
+            { "value": "star", "label": "Star Accent" }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Complimentary Delivery"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "On all orders over $150 worldwide."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Badges",
+      "blocks": [
+        { "type": "badge_card", "settings": { "icon": "truck", "title": "Complimentary Delivery", "subtitle": "On all orders over $150 worldwide." } },
+        { "type": "badge_card", "settings": { "icon": "shield", "title": "2-Year Warranty", "subtitle": "Guaranteed craft integrity and coverage." } },
+        { "type": "badge_card", "settings": { "icon": "refresh", "title": "30-Day Hassle Returns", "subtitle": "Seamless exchanges and refunds." } },
+        { "type": "badge_card", "settings": { "icon": "star", "title": "Artisanal Integrity", "subtitle": "Sourced sustainably with premium components." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

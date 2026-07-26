@@ -1,0 +1,12 @@
+# Shopify CLI & Local Cache
+.shopify/
+.ds_store
+Thumbs.db
+
+# Dependencies
+node_modules/
+npm-debug.log
+
+# Environment & Private Keys
+.env
+*.secret

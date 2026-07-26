@@ -1,0 +1,51 @@
+{%- comment -%}
+  Main Blog List Section
+{%- endcomment -%}
+
+{%- paginate blog.articles by 6 -%}
+  <div class="main-blog page-width section-spacing">
+    {% render 'breadcrumbs' %}
+
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <h1 style="font-size: clamp(2.25rem, 4vw, 3.25rem);">{{ blog.title }}</h1>
+    </div>
+
+    <div class="grid grid--3-col">
+      {%- for article in blog.articles -%}
+        <article class="article-card" style="background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; display: flex; flex-direction: column;">
+          <a href="{{ article.url }}" class="media-wrapper media-wrapper--landscape">
+            {%- if article.image -%}
+              <img src="{{ article.image | image_url: width: 800 }}" alt="{{ article.title | escape }}" width="800" height="533" loading="lazy">
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </a>
+
+          <div style="padding: 1.5rem; display: flex; flex-direction: column; flex: 1;">
+            <span style="font-size: 0.8rem; color: var(--color-accent-gold); text-transform: uppercase; font-weight: var(--font-weight-semibold); margin-bottom: 0.5rem;">
+              {{ article.published_at | date: "%B %d, %Y" }}
+            </span>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; font-family: var(--font-heading);">
+              <a href="{{ article.url }}">{{ article.title }}</a>
+            </h3>
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 1.25rem; flex: 1;">
+              {{ article.excerpt_or_content | strip_html | truncatewords: 25 }}
+            </p>
+            <a href="{{ article.url }}" style="font-size: 0.85rem; font-weight: var(--font-weight-bold); color: var(--color-cta-bg); text-transform: uppercase; letter-spacing: 0.05em;">
+              Read Article &rarr;
+            </a>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    {% render 'pagination', paginate: paginate %}
+  </div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Main Blog",
+  "settings": []
+}
+{% endschema %}

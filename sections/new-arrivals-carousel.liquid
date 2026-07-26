@@ -1,0 +1,85 @@
+{%- comment -%}
+  New Arrivals Carousel Section
+{%- endcomment -%}
+
+{%- liquid
+  assign new_coll = section.settings.collection
+  assign products_to_show = section.settings.products_to_show | default: 6
+-%}
+
+<div class="new-arrivals-carousel section-spacing" style="background-color: var(--color-bg-tertiary); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+  <div class="page-width">
+    <div class="flex-between" style="margin-bottom: 2.5rem;">
+      <div>
+        <span class="subheading">{{ section.settings.subheading | default: 'Just Dropped' }}</span>
+        <h2>{{ section.settings.heading | default: 'New Arrivals' }}</h2>
+      </div>
+
+      <div class="flex items-center gap-sm">
+        <button type="button" class="icon-btn" data-carousel-prev aria-label="Previous" style="background: var(--color-bg-secondary); border: 1px solid var(--color-border);">
+          &larr;
+        </button>
+        <button type="button" class="icon-btn" data-carousel-next aria-label="Next" style="background: var(--color-bg-secondary); border: 1px solid var(--color-border);">
+          &rarr;
+        </button>
+      </div>
+    </div>
+
+    <div data-carousel style="position: relative;">
+      <div data-carousel-track style="display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1rem; scrollbar-width: none;">
+        {%- if new_coll != blank and new_coll.products.size > 0 -%}
+          {%- for product in new_coll.products limit: products_to_show -%}
+            <div style="flex: 0 0 280px; scroll-snap-align: start;">
+              {% render 'product-card', product_card_product: product, show_vendor: true %}
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..6) -%}
+            <div style="flex: 0 0 280px; scroll-snap-align: start;">
+              {% render 'product-card', show_vendor: true %}
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "New Arrivals Carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Just Dropped"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "New Arrivals"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 12,
+      "step": 2,
+      "default": 6,
+      "label": "Products to Show"
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Arrivals Carousel"
+    }
+  ]
+}
+{% endschema %}

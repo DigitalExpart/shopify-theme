@@ -1,0 +1,108 @@
+{%- comment -%}
+  Brand Pillars Section
+{%- endcomment -%}
+
+<div class="brand-pillars section-spacing" style="background-color: var(--color-bg-primary);">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <span class="subheading">{{ section.settings.subheading }}</span>
+        <h2>{{ section.settings.heading }}</h2>
+      </div>
+    {%- endif -%}
+
+    <div class="grid grid--3-col">
+      {%- for block in section.blocks -%}
+        <div class="pillar-card" style="background: var(--color-bg-secondary); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--color-border); display: flex; flex-direction: column;">
+          <div class="media-wrapper media-wrapper--portrait">
+            {%- if block.settings.image != blank -%}
+              <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="800" height="1000">
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+          <div style="padding: 1.75rem; display: flex; flex-direction: column; flex: 1;">
+            <h3 style="font-size: 1.35rem; margin-bottom: 0.75rem; font-family: var(--font-heading);">
+              {{ block.settings.title }}
+            </h3>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; flex: 1;">
+              {{ block.settings.description }}
+            </p>
+            {%- if block.settings.button_label != blank -%}
+              <div>
+                {% render 'button', label: block.settings.button_label, link: block.settings.button_link, style: 'secondary', class: 'btn--sm' %}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Brand Pillars",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Our Philosophy"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Pillars of Excellence"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pillar Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Master Craftsmanship"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Every creation undergoes hundreds of hours of precision engineering and hand touches."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Learn More"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Pillars",
+      "blocks": [
+        { "type": "pillar", "settings": { "title": "Artisanal Heritage", "description": "Combining time-honored techniques with contemporary material science." } },
+        { "type": "pillar", "settings": { "title": "Sustainable Sourcing", "description": "Certified organic and ethically harvested raw components from local guilds." } },
+        { "type": "pillar", "settings": { "title": "Timeless Aesthetic", "description": "Minimalist forms designed to outlast transient fashion cycles." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

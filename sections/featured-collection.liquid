@@ -1,0 +1,117 @@
+{%- comment -%}
+  Featured Collection Section
+{%- endcomment -%}
+
+{%- liquid
+  assign featured_coll = section.settings.collection
+  assign products_to_show = section.settings.products_to_show | default: 4
+-%}
+
+<div class="featured-collection section-spacing" style="background-color: var(--color-bg-primary);">
+  <div class="page-width">
+    <div class="flex-between" style="margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        {%- if section.settings.subheading != blank -%}
+          <span class="subheading">{{ section.settings.subheading }}</span>
+        {%- endif -%}
+        <h2>{{ section.settings.heading | default: featured_coll.title | default: 'Featured Collection' }}</h2>
+      </div>
+
+      {%- if featured_coll != blank -%}
+        <a href="{{ featured_coll.url }}" class="btn btn--outline btn--sm">
+          View Collection &rarr;
+        </a>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.enable_carousel -%}
+      <div data-carousel style="position: relative;">
+        <div data-carousel-track style="display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1rem; scrollbar-width: none;">
+          {%- if featured_coll != blank and featured_coll.products.size > 0 -%}
+            {%- for product in featured_coll.products limit: products_to_show -%}
+              <div style="flex: 0 0 280px; scroll-snap-align: start;">
+                {% render 'product-card', product_card_product: product, show_vendor: section.settings.show_vendor %}
+              </div>
+            {%- endfor -%}
+          {%- else -%}
+            {%- for i in (1..4) -%}
+              <div style="flex: 0 0 280px; scroll-snap-align: start;">
+                {% render 'product-card', show_vendor: section.settings.show_vendor %}
+              </div>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+
+        <button type="button" class="icon-btn" data-carousel-prev aria-label="Previous" style="position: absolute; top: 40%; left: -20px; background: var(--color-bg-secondary); border: 1px solid var(--color-border); box-shadow: var(--shadow-md); z-index: 5;">
+          &larr;
+        </button>
+        <button type="button" class="icon-btn" data-carousel-next aria-label="Next" style="position: absolute; top: 40%; right: -20px; background: var(--color-bg-secondary); border: 1px solid var(--color-border); box-shadow: var(--shadow-md); z-index: 5;">
+          &rarr;
+        </button>
+      </div>
+    {%- else -%}
+      <div class="grid grid--4-col">
+        {%- if featured_coll != blank and featured_coll.products.size > 0 -%}
+          {%- for product in featured_coll.products limit: products_to_show -%}
+            {% render 'product-card', product_card_product: product, show_vendor: section.settings.show_vendor %}
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..4) -%}
+            {% render 'product-card', show_vendor: section.settings.show_vendor %}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Handpicked Favorites"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Featured Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 2,
+      "default": 4,
+      "label": "Products to Show"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_carousel",
+      "label": "Enable horizontal carousel",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show product vendor",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}

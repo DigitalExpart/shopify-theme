@@ -1,0 +1,60 @@
+{%- comment -%}
+  About Us Story Page Section
+{%- endcomment -%}
+
+<div class="about-story section-spacing" style="background-color: var(--color-bg-primary);">
+  <div class="page-width">
+    {% render 'breadcrumbs' %}
+
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 4rem auto;">
+      <span class="subheading">{{ section.settings.subheading | default: 'Our History' }}</span>
+      <h1 style="font-size: clamp(2.5rem, 4.5vw, 3.75rem); margin-bottom: 1.5rem;">
+        {{ section.settings.heading | default: 'Refining the Art of Everyday Luxury' }}
+      </h1>
+      <p style="font-size: 1.15rem; color: var(--color-text-secondary); line-height: 1.7;">
+        {{ section.settings.intro | default: 'We started with a singular pursuit: to create timeless products that merge uncompromising quality with minimalist elegance.' }}
+      </p>
+    </div>
+
+    <div class="grid grid--3-col" style="margin-bottom: 5rem;">
+      <div style="background: var(--color-bg-secondary); padding: 2.5rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); text-align: center;">
+        <h3 style="font-size: 3rem; color: var(--color-accent-gold); margin-bottom: 0.5rem; font-family: var(--font-heading);">100%</h3>
+        <p style="font-weight: var(--font-weight-semibold); color: var(--color-text-primary);">Ethically Sourced Materials</p>
+      </div>
+      <div style="background: var(--color-bg-secondary); padding: 2.5rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); text-align: center;">
+        <h3 style="font-size: 3rem; color: var(--color-accent-gold); margin-bottom: 0.5rem; font-family: var(--font-heading);">24+</h3>
+        <p style="font-weight: var(--font-weight-semibold); color: var(--color-text-primary);">Global Artisan Guilds</p>
+      </div>
+      <div style="background: var(--color-bg-secondary); padding: 2.5rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); text-align: center;">
+        <h3 style="font-size: 3rem; color: var(--color-accent-gold); margin-bottom: 0.5rem; font-family: var(--font-heading);">50k+</h3>
+        <p style="font-weight: var(--font-weight-semibold); color: var(--color-text-primary);">Patrons Worldwide</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About Story",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Our History"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Refining the Art of Everyday Luxury"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Introductory Text",
+      "default": "We started with a singular pursuit: to create timeless products that merge uncompromising quality with minimalist elegance."
+    }
+  ]
+}
+{% endschema %}

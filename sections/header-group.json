@@ -1,0 +1,26 @@
+{
+  "name": "Header Group",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "settings": {
+        "show_announcement": true,
+        "text": "Complimentary Shipping on Orders Over $150",
+        "icon": "truck",
+        "bg_color": "#0D1B2A",
+        "text_color": "#FAF8F5"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu"
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}

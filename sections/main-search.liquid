@@ -1,0 +1,61 @@
+{%- comment -%}
+  Main Search Page Section
+{%- endcomment -%}
+
+{%- paginate search.results by 12 -%}
+  <div class="main-search page-width section-spacing">
+    {% render 'breadcrumbs' %}
+
+    <div style="text-align: center; max-width: 600px; margin: 0 auto 3rem auto;">
+      <h1 style="font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 1.5rem;">
+        {%- if search.performed -%}
+          {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+        {%- else -%}
+          Search Store
+        {%- endif -%}
+      </h1>
+
+      <form action="{{ routes.search_url }}" method="get" role="search" class="flex gap-sm">
+        <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" class="field__input" style="flex: 1;">
+        <button type="submit" class="btn btn--primary">
+          {{ 'general.search.submit' | t }}
+        </button>
+      </form>
+    </div>
+
+    {%- if search.performed -%}
+      {%- if search.results.size > 0 -%}
+        <div class="grid grid--4-col">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              {% render 'product-card', product_card_product: item, show_vendor: true %}
+            {%- else -%}
+              <div style="background: var(--color-bg-secondary); border: 1px solid var(--color-border); padding: 1.5rem; border-radius: var(--radius-sm);">
+                <span class="subheading">{{ item.object_type | capitalize }}</span>
+                <h3 style="font-size: 1.1rem; margin-top: 0.5rem; font-family: var(--font-body);">
+                  <a href="{{ item.url }}">{{ item.title }}</a>
+                </h3>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        {% render 'pagination', paginate: paginate %}
+      {%- else -%}
+        <div style="text-align: center; padding: 3rem 1rem;">
+          <p style="font-size: 1.1rem; color: var(--color-text-muted);">
+            {{ 'general.search.no_results' | t: terms: search.terms }}
+          </p>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+  </div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Main Search",
+  "settings": []
+}
+{% endschema %}

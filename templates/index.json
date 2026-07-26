@@ -1,0 +1,109 @@
+{
+  "name": "Homepage",
+  "sections": {
+    "hero_banner": {
+      "type": "hero-banner",
+      "settings": {
+        "desktop_height": 650,
+        "overlay_opacity": 35,
+        "subheading": "Autumn / Winter Collection 2026",
+        "heading": "Elevate Your Every Day",
+        "text": "Discover meticulously crafted products engineered with precision aesthetics and unmatched durability.",
+        "text_alignment": "left",
+        "button_label_1": "Shop New Arrivals",
+        "button_label_2": "Explore Story"
+      }
+    },
+    "trust_badges": {
+      "type": "trust-badges",
+      "blocks": {
+        "badge_1": { "type": "badge_card", "settings": { "icon": "truck", "title": "Complimentary Shipping", "subtitle": "On all orders over $150 worldwide." } },
+        "badge_2": { "type": "badge_card", "settings": { "icon": "shield", "title": "2-Year Warranty", "subtitle": "Guaranteed craft integrity and coverage." } },
+        "badge_3": { "type": "badge_card", "settings": { "icon": "refresh", "title": "30-Day Hassle Returns", "subtitle": "Seamless exchanges and refunds." } },
+        "badge_4": { "type": "badge_card", "settings": { "icon": "star", "title": "Artisanal Integrity", "subtitle": "Sourced sustainably with premium components." } }
+      },
+      "block_order": ["badge_1", "badge_2", "badge_3", "badge_4"]
+    },
+    "brand_pillars": {
+      "type": "brand-pillars",
+      "blocks": {
+        "pillar_1": { "type": "pillar", "settings": { "title": "Artisanal Heritage", "description": "Combining time-honored techniques with contemporary material science." } },
+        "pillar_2": { "type": "pillar", "settings": { "title": "Sustainable Sourcing", "description": "Certified organic and ethically harvested raw components from local guilds." } },
+        "pillar_3": { "type": "pillar", "settings": { "title": "Timeless Aesthetic", "description": "Minimalist forms designed to outlast transient fashion cycles." } }
+      },
+      "block_order": ["pillar_1", "pillar_2", "pillar_3"]
+    },
+    "shop_categories": {
+      "type": "shop-categories",
+      "blocks": {
+        "cat_1": { "type": "category", "settings": { "title": "Timepieces & Leather" } },
+        "cat_2": { "type": "category", "settings": { "title": "Signature Apparel" } },
+        "cat_3": { "type": "category", "settings": { "title": "Home & Essentials" } }
+      },
+      "block_order": ["cat_1", "cat_2", "cat_3"]
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "subheading": "Handpicked Favorites",
+        "heading": "Featured Collection",
+        "products_to_show": 4,
+        "enable_carousel": false
+      }
+    },
+    "brand_story": {
+      "type": "brand-story",
+      "settings": {
+        "subheading": "Our Heritage & Purpose",
+        "heading": "Built for Those Who Appreciate Pure Craftsmanship",
+        "text": "<p>Founded on principles of uncompromising precision and minimalist design, our workshop brings together master artisans and innovative engineering. Each piece is designed to tell a story of endurance, elegance, and intentional living.</p>",
+        "button_label": "Read Our Full Story"
+      }
+    },
+    "best_sellers": {
+      "type": "best-sellers-carousel",
+      "settings": {
+        "subheading": "Customer Favorites",
+        "heading": "Best Sellers",
+        "products_to_show": 6
+      }
+    },
+    "new_arrivals": {
+      "type": "new-arrivals-carousel",
+      "settings": {
+        "subheading": "Just Dropped",
+        "heading": "New Arrivals",
+        "products_to_show": 6
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "test_1": { "type": "testimonial", "settings": { "author": "Julian Vance", "quote": "Remarkable craft and timeless execution. Customer service was exquisite from start to delivery.", "location": "New York, USA" } },
+        "test_2": { "type": "testimonial", "settings": { "author": "Sophia Laurent", "quote": "Every detail feels curated. The materials used are exceptional and feel far superior to mass market offerings.", "location": "Paris, France" } },
+        "test_3": { "type": "testimonial", "settings": { "author": "Marcus Sterling", "quote": "Solid weight, flawless finishing, and arrived beautifully packaged within 48 hours.", "location": "Tokyo, Japan" } }
+      },
+      "block_order": ["test_1", "test_2", "test_3"]
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "subheading": "Stay Connected",
+        "heading": "Join the Inner Circle",
+        "text": "Subscribe to receive private preview access, editorial stories, and complimentary concierge support."
+      }
+    }
+  },
+  "order": [
+    "hero_banner",
+    "trust_badges",
+    "brand_pillars",
+    "shop_categories",
+    "featured_collection",
+    "brand_story",
+    "best_sellers",
+    "new_arrivals",
+    "testimonials",
+    "newsletter"
+  ]
+}

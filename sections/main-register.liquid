@@ -1,0 +1,52 @@
+{%- comment -%}
+  Main Customer Registration Section
+{%- endcomment -%}
+
+<div class="main-register page-width page-width--narrow section-spacing">
+  <div style="max-width: 440px; margin: 0 auto; background: var(--color-bg-secondary); border: 1px solid var(--color-border); padding: 2.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+    <h1 style="font-size: 2rem; text-align: center; margin-bottom: 2rem;">
+      {{ 'customer.register_page.title' | t }}
+    </h1>
+
+    {% form 'create_customer' %}
+      {% render 'form-errors', form: form %}
+
+      <div class="field">
+        <label for="RegisterForm-FirstName" class="field__label">{{ 'customer.register_page.first_name' | t }}</label>
+        <input type="text" name="customer[first_name]" id="RegisterForm-FirstName" class="field__input" autocomplete="given-name" required>
+      </div>
+
+      <div class="field">
+        <label for="RegisterForm-LastName" class="field__label">{{ 'customer.register_page.last_name' | t }}</label>
+        <input type="text" name="customer[last_name]" id="RegisterForm-LastName" class="field__input" autocomplete="family-name" required>
+      </div>
+
+      <div class="field">
+        <label for="RegisterForm-email" class="field__label">{{ 'customer.register_page.email' | t }}</label>
+        <input type="email" name="customer[email]" id="RegisterForm-email" class="field__input" autocomplete="email" required>
+      </div>
+
+      <div class="field">
+        <label for="RegisterForm-password" class="field__label">{{ 'customer.register_page.password' | t }}</label>
+        <input type="password" name="customer[password]" id="RegisterForm-password" class="field__input" autocomplete="new-password" required>
+      </div>
+
+      <button type="submit" class="btn btn--primary btn--full" style="margin-top: 1rem;">
+        {{ 'customer.register_page.submit' | t }}
+      </button>
+
+      <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem;">
+        <a href="{{ routes.account_login_url }}" style="color: var(--color-text-primary); text-decoration: underline;">
+          Already have an account? Sign In
+        </a>
+      </div>
+    {% endform %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main Register",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,26 @@
+{%- comment -%}
+  Renders form validation errors.
+  Accepts:
+  - form: {Object} Shopify Form liquid object
+{%- endcomment -%}
+
+{%- if form.errors -%}
+  <div class="form-errors" role="alert" style="background-color: #FDE8E8; border: 1px solid var(--color-error); color: var(--color-error); padding: 1rem 1.25rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; font-size: 0.9rem;">
+    <h4 style="color: var(--color-error); margin-bottom: 0.5rem; font-size: 0.95rem; font-family: var(--font-body);">
+      Please correct the following errors:
+    </h4>
+    <ul style="list-style-type: disc; padding-left: 1.25rem;">
+      {%- for field in form.errors -%}
+        <li>
+          {%- if field == 'form' -%}
+            {{ form.errors.messages[field] }}
+          {%- else -%}
+            <a href="#RegisterForm-{{ field }}" style="color: var(--color-error); text-decoration: underline;">
+              {{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}
+            </a>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif -%}

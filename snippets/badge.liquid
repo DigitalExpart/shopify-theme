@@ -1,0 +1,26 @@
+{%- comment -%}
+  Renders a status badge.
+  Accepts:
+  - type: 'sale' | 'new' | 'soldout' | 'custom'
+  - text: String custom text label
+{%- endcomment -%}
+
+{%- liquid
+  assign badge_text = ''
+  case type
+    when 'sale'
+      assign badge_text = 'Sale'
+    when 'new'
+      assign badge_text = 'New'
+    when 'soldout'
+      assign badge_text = 'Sold Out'
+    else
+      assign badge_text = text
+  endcase
+-%}
+
+{%- if badge_text != blank -%}
+  <span class="badge badge--{{ type | default: 'custom' }}">
+    {{ badge_text }}
+  </span>
+{%- endif -%}
