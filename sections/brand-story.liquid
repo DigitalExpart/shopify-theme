@@ -1,12 +1,12 @@
 {%- comment -%}
   Split Section 1: Built With Purpose (Left) & Stay Inspired Newsletter (Right)
-  Exact reference replica: Full-width edge-to-edge 50/50 split banner.
+  Exact reference replica: Image crisp on the left 45%, solid dark navy background on the right 55% for text.
 {%- endcomment -%}
 
 <div class="brand-story-split" style="width: 100%; display: grid; grid-template-columns: 1fr 1fr; background-color: var(--color-bg-primary); overflow: hidden;">
   
-  {%- comment -%} Left Column: Built With Purpose (Image + Dark Navy Overlay + Content) {%- endcomment -%}
-  <div style="position: relative; min-height: 340px; display: flex; align-items: center; justify-content: flex-end; padding: 3rem; background-color: #0D1B2A; color: #FFFFFF; overflow: hidden;">
+  {%- comment -%} Left Column: Built With Purpose (Left Image + Right Solid Dark Navy Block) {%- endcomment -%}
+  <div style="position: relative; min-height: 350px; display: flex; align-items: center; justify-content: flex-end; padding: 2.5rem 3rem; background-color: #0D1B2A; color: #FFFFFF; overflow: hidden;">
     {%- liquid
       assign story_img = section.settings.image
       if story_img != blank
@@ -15,30 +15,33 @@
         assign story_src = 'seedream-5.0-pro_a_help_replicate_this_ (2).jpeg' | asset_url
       endif
     -%}
+    
+    {%- comment -%} Clear Image on Left 50% {%- endcomment -%}
     <img
       src="{{ story_src }}"
       alt="Built With Purpose"
       loading="lazy"
       width="1200"
       height="700"
-      style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: left center;"
+      style="position: absolute; top: 0; left: 0; width: 50%; height: 100%; object-fit: cover; object-position: left center;"
     >
 
-    {%- comment -%} Gradient overlay: image on left, dark navy text block on right {%- endcomment -%}
-    <div style="position: absolute; inset: 0; background: linear-gradient(to right, rgba(13, 27, 42, 0.2) 0%, rgba(13, 27, 42, 0.85) 40%, rgba(13, 27, 42, 0.98) 100%);"></div>
+    {%- comment -%} Smooth Gradient Transition between Left Image and Right Solid Navy Panel {%- endcomment -%}
+    <div style="position: absolute; top: 0; left: 35%; width: 25%; height: 100%; background: linear-gradient(to right, rgba(13, 27, 42, 0) 0%, rgba(13, 27, 42, 1) 100%); z-index: 1;"></div>
 
-    <div style="position: relative; z-index: 2; max-width: 440px; text-align: left;">
+    {%- comment -%} Solid Dark Navy Content Panel on the Right Half {%- endcomment -%}
+    <div style="position: relative; z-index: 2; width: 52%; margin-left: auto; text-align: left;">
       <h2 style="font-family: 'Oswald', 'Impact', sans-serif; color: #FFFFFF; font-size: 1.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.85rem; line-height: 1.1;">
         BUILT WITH PURPOSE
       </h2>
-      <p style="color: #CBD5E1; font-size: 0.88rem; line-height: 1.55; margin-bottom: 1.25rem;">
+      <p style="color: #94A3B8; font-size: 0.85rem; line-height: 1.55; margin-bottom: 1.25rem; max-width: 360px;">
         The Amendment Company was founded on a simple belief—that freedom is worth defending and honoring every day. We create apparel that sparks conversation, strengthens community, and reminds us of the values we stand for.
       </p>
       <div>
-        <span style="font-family: 'Playfair Display', serif; font-style: italic; color: #C5A059; font-size: 1.25rem; display: block; line-height: 1.2;">
+        <span style="font-family: 'Playfair Display', serif; font-style: italic; color: #94A3B8; font-size: 1.2rem; display: block; line-height: 1.2;">
           Founder Name
         </span>
-        <span style="color: #94A3B8; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; display: block; margin-top: 0.2rem;">
+        <span style="color: #64748B; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; display: block; margin-top: 0.25rem;">
           FOUNDER &amp; PATRIOT
         </span>
       </div>
@@ -46,8 +49,8 @@
   </div>
 
   {%- comment -%} Right Column: Stay Inspired Newsletter (Parchment Background) {%- endcomment -%}
-  <div style="position: relative; min-height: 340px; display: flex; align-items: center; justify-content: flex-start; padding: 3rem; background-color: #FAF8F5; color: #0D1B2A;">
-    <div style="max-width: 460px; text-align: left; width: 100%;">
+  <div style="position: relative; min-height: 350px; display: flex; align-items: center; justify-content: flex-start; padding: 2.5rem 3rem; background-color: #FAF8F5; color: #0D1B2A;">
+    <div style="max-width: 440px; text-align: left; width: 100%;">
       <h2 style="font-family: 'Oswald', 'Impact', sans-serif; color: #0D1B2A; font-size: 1.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; line-height: 1.1;">
         <span>STAY INSPIRED</span>
         <span style="color: #C5A059; font-size: 1.1rem;">★</span>
@@ -58,7 +61,7 @@
 
       {% form 'customer', class: 'stay-inspired-inline-form' %}
         <input type="hidden" name="contact[tags]" value="newsletter">
-        <div style="display: flex; width: 100%; max-width: 420px; border-radius: 2px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 1.25rem;">
+        <div style="display: flex; width: 100%; max-width: 400px; border-radius: 2px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 1.25rem;">
           <input
             type="email"
             name="contact[email]"
@@ -97,6 +100,12 @@
   @media (max-width: 900px) {
     .brand-story-split {
       grid-template-columns: 1fr !important;
+    }
+    .brand-story-split > div:first-child img {
+      width: 100% !important;
+    }
+    .brand-story-split > div:first-child > div:last-child {
+      width: 100% !important;
     }
   }
 </style>
