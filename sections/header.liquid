@@ -1,46 +1,53 @@
 {%- comment -%}
-  Global Header Section
+  Header Section - The Amendment Company (1776)
 {%- endcomment -%}
 
-<header class="header" data-header-sticky style="background-color: var(--color-bg-primary); border-bottom: 1px solid var(--color-border); position: sticky; top: 0; z-index: var(--z-header); transition: transform var(--transition-base), box-shadow var(--transition-base);">
-  <div class="page-width flex-between" style="height: var(--header-height);">
+<header class="header" data-header-sticky style="background-color: var(--color-bg-primary); border-bottom: 1px solid var(--color-border); position: sticky; top: 0; z-index: var(--z-header); box-shadow: var(--shadow-sm); transition: transform var(--transition-base);">
+  <div class="page-width flex-between" style="height: var(--header-height); gap: 1rem;">
 
-    {%- comment -%} Mobile Menu Drawer Toggle {%- endcomment -%}
+    {%- comment -%} Mobile Menu Toggle {%- endcomment -%}
     <button type="button" class="icon-btn mobile-only" data-drawer-trigger="mobile-menu-drawer" aria-label="{{ 'general.accessibility.menu' | t }}" style="display: none;">
       {% render 'icon-menu' %}
     </button>
 
-    {%- comment -%} Brand Logo {%- endcomment -%}
+    {%- comment -%} Brand Logo - Eagle Crest & Text {%- endcomment -%}
     <div class="header__logo">
-      <a href="{{ routes.root_url }}" style="font-family: var(--font-heading); font-size: 1.45rem; font-weight: var(--font-weight-bold); color: var(--color-text-primary); text-transform: uppercase; letter-spacing: 0.08em; display: flex; align-items: center; gap: 0.5rem;">
+      <a href="{{ routes.root_url }}" style="font-family: var(--font-heading); color: var(--color-text-primary); text-transform: uppercase; text-decoration: none; display: flex; align-items: center; gap: 0.75rem;">
         {%- if section.settings.logo != blank -%}
-          <img src="{{ section.settings.logo | image_url: width: 320 }}" alt="{{ shop.name | escape }}" width="160" height="40">
+          <img src="{{ section.settings.logo | image_url: width: 360 }}" alt="{{ shop.name | escape }}" width="180" height="48" style="object-fit: contain;">
         {%- else -%}
-          <span style="display: flex; flex-direction: column; text-align: center; line-height: 1.1;">
-            <span style="font-size: 1.25rem; letter-spacing: 0.05em; font-family: var(--font-heading);">THE AMENDMENT COMPANY</span>
-            <span style="font-size: 0.75rem; letter-spacing: 0.25em; color: var(--color-accent-gold); font-weight: var(--font-weight-semibold);">&#8212; 1776 &#8212;</span>
-          </span>
+          <div style="display: flex; align-items: center; gap: 0.6rem;">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" style="color: var(--color-text-primary);" aria-hidden="true">
+              <path d="M12 2L15 8L22 9L17 14L18 21L12 17.5L6 21L7 14L2 9L9 8L12 2Z" fill="var(--color-accent-gold)"/>
+              <path d="M12 4.5L14 8.5L18.5 9.2L15.2 12.5L16 17L12 14.7L8 17L8.8 12.5L5.5 9.2L10 8.5L12 4.5Z" fill="var(--color-text-primary)"/>
+            </svg>
+            <div style="display: flex; flex-direction: column; line-height: 1.05; text-align: left;">
+              <span style="font-size: 1.2rem; font-weight: 800; letter-spacing: 0.06em; font-family: var(--font-heading); color: var(--color-text-primary);">THE AMENDMENT</span>
+              <span style="font-size: 0.95rem; font-weight: 700; letter-spacing: 0.22em; color: var(--color-text-primary);">&#8212; COMPANY &#8212;</span>
+              <span style="font-size: 0.65rem; font-weight: 600; letter-spacing: 0.35em; color: var(--color-accent-gold); margin-top: 2px;">★ 1776 ★</span>
+            </div>
+          </div>
         {%- endif -%}
       </a>
     </div>
 
-    {%- comment -%} Desktop Navigation Menu {%- endcomment -%}
+    {%- comment -%} Desktop Navigation Menu with Multi-level Dropdowns {%- endcomment -%}
     <nav class="header__nav desktop-only" role="navigation" aria-label="Main Navigation">
       <ul class="flex items-center gap-lg">
         {%- for link in section.settings.menu.links -%}
           <li style="position: relative;" class="nav-item">
-            <a href="{{ link.url }}" class="nav-link" style="font-size: 0.95rem; font-weight: var(--font-weight-medium); padding: 0.5rem 0; display: inline-flex; align-items: center; gap: 0.3rem;">
-              {{ link.title }}
+            <a href="{{ link.url }}" class="nav-link" style="font-size: 0.85rem; font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: 0.08em; padding: 1.5rem 0; color: var(--color-text-primary); display: inline-flex; align-items: center; gap: 0.35rem; transition: color var(--transition-fast);">
+              <span>{{ link.title }}</span>
               {%- if link.links != blank -%}
                 {% render 'icon-chevron' %}
               {%- endif -%}
             </a>
 
             {%- if link.links != blank -%}
-              <ul class="dropdown-menu" style="position: absolute; top: 100%; left: 0; min-width: 220px; background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: var(--radius-sm); box-shadow: var(--shadow-md); padding: 0.75rem 0; opacity: 0; visibility: hidden; transition: all var(--transition-fast); z-index: 10;">
+              <ul class="dropdown-menu" style="position: absolute; top: 100%; left: -10px; min-width: 230px; background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: var(--radius-sm); box-shadow: var(--shadow-lg); padding: 0.75rem 0; opacity: 0; visibility: hidden; transition: all var(--transition-fast); z-index: 100;">
                 {%- for childlink in link.links -%}
                   <li>
-                    <a href="{{ childlink.url }}" style="display: block; padding: 0.5rem 1.25rem; font-size: 0.9rem; color: var(--color-text-secondary);">
+                    <a href="{{ childlink.url }}" style="display: block; padding: 0.6rem 1.25rem; font-size: 0.85rem; font-weight: var(--font-weight-medium); color: var(--color-text-primary); text-transform: uppercase; letter-spacing: 0.05em; transition: background-color var(--transition-fast), color var(--transition-fast);" onmouseenter="this.style.backgroundColor='var(--color-bg-tertiary)'; this.style.color='var(--color-cta-bg)'" onmouseleave="this.style.backgroundColor='transparent'; this.style.color='var(--color-text-primary)'">
                       {{ childlink.title }}
                     </a>
                   </li>
@@ -52,22 +59,22 @@
       </ul>
     </nav>
 
-    {%- comment -%} Action Icons (Search, Account, Cart) {%- endcomment -%}
-    <div class="header__icons flex items-center gap-sm">
-      {%- comment -%} Search Trigger {%- endcomment -%}
+    {%- comment -%} Action Icons (Search, Customer Account, Cart) {%- endcomment -%}
+    <div class="header__icons flex items-center gap-xs">
+      {%- comment -%} Search Button {%- endcomment -%}
       <button type="button" class="icon-btn" data-drawer-trigger="search-drawer" aria-label="{{ 'general.accessibility.search' | t }}">
         {% render 'icon-search' %}
       </button>
 
-      {%- comment -%} Account Link {%- endcomment -%}
-      <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="icon-btn" aria-label="Account">
+      {%- comment -%} Customer Account {%- endcomment -%}
+      <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="icon-btn" aria-label="Customer Account">
         {% render 'icon-user' %}
       </a>
 
-      {%- comment -%} Cart Drawer Trigger {%- endcomment -%}
+      {%- comment -%} Cart Trigger with Red Count Badge {%- endcomment -%}
       <button type="button" class="icon-btn" data-drawer-trigger="cart-drawer" aria-label="{{ 'general.accessibility.cart' | t }}" style="position: relative;">
         {% render 'icon-cart' %}
-        <span data-cart-count style="position: absolute; top: 4px; right: 4px; background: var(--color-cta-bg); color: #FFFFFF; font-size: 0.7rem; font-weight: var(--font-weight-bold); width: 18px; height: 18px; border-radius: var(--radius-full); display: {%- if cart.item_count > 0 %}inline-flex{% else %}none{% endif %}; align-items: center; justify-content: center;">
+        <span data-cart-count style="position: absolute; top: 2px; right: 2px; background-color: var(--color-cta-bg); color: #FFFFFF; font-size: 0.7rem; font-weight: var(--font-weight-bold); width: 18px; height: 18px; border-radius: var(--radius-full); display: {%- if cart.item_count > 0 %}inline-flex{% else %}none{% endif %}; align-items: center; justify-content: center; border: 1.5px solid var(--color-bg-primary);">
           {{ cart.item_count }}
         </span>
       </button>
@@ -79,7 +86,7 @@
 {%- comment -%} Mobile Navigation Drawer {%- endcomment -%}
 <div id="mobile-menu-drawer" class="drawer" aria-hidden="true">
   <div class="drawer__header">
-    <h3 style="font-size: 1.25rem; font-family: var(--font-heading);">Menu</h3>
+    <h3 style="font-size: 1.25rem; font-family: var(--font-heading); text-transform: uppercase;">Menu</h3>
     <button type="button" class="icon-btn" data-drawer-close aria-label="Close menu">
       {% render 'icon-close' %}
     </button>
@@ -89,9 +96,23 @@
       <ul style="display: flex; flex-direction: column; gap: 1rem;">
         {%- for link in section.settings.menu.links -%}
           <li style="border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem;">
-            <a href="{{ link.url }}" style="font-size: 1.1rem; font-weight: var(--font-weight-semibold);">
-              {{ link.title }}
+            <a href="{{ link.url }}" style="font-size: 1.05rem; font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: 0.05em; display: flex; justify-content: space-between; align-items: center;">
+              <span>{{ link.title }}</span>
+              {%- if link.links != blank -%}
+                {% render 'icon-chevron' %}
+              {%- endif -%}
             </a>
+            {%- if link.links != blank -%}
+              <ul style="margin-top: 0.5rem; padding-left: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                {%- for childlink in link.links -%}
+                  <li>
+                    <a href="{{ childlink.url }}" style="font-size: 0.9rem; color: var(--color-text-secondary); text-transform: uppercase;">
+                      {{ childlink.title }}
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
           </li>
         {%- endfor -%}
       </ul>
@@ -99,10 +120,10 @@
   </div>
 </div>
 
-{%- comment -%} Search Modal Drawer {%- endcomment -%}
+{%- comment -%} Predictive Search Modal Drawer {%- endcomment -%}
 <div id="search-drawer" class="drawer" aria-hidden="true">
   <div class="drawer__header">
-    <h3 style="font-size: 1.25rem; font-family: var(--font-heading);">Search Store</h3>
+    <h3 style="font-size: 1.25rem; font-family: var(--font-heading); text-transform: uppercase;">Search Store</h3>
     <button type="button" class="icon-btn" data-drawer-close aria-label="Close search">
       {% render 'icon-close' %}
     </button>
@@ -111,7 +132,7 @@
     <form action="{{ routes.search_url }}" method="get" role="search">
       <div class="field">
         <label for="SearchInput" class="field__label">{{ 'general.search.placeholder' | t }}</label>
-        <input id="SearchInput" type="search" name="q" class="field__input" placeholder="{{ 'general.search.placeholder' | t }}" autocomplete="off">
+        <input id="SearchInput" type="search" name="q" class="field__input" placeholder="{{ 'general.search.placeholder' | t }}" autocomplete="off" required>
       </div>
       <button type="submit" class="btn btn--primary btn--full" style="margin-top: 1rem;">
         {{ 'general.search.submit' | t }}
@@ -126,8 +147,12 @@
     .mobile-only { display: inline-flex !important; }
   }
   .nav-item:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0);
+  }
+  .nav-link:hover {
+    color: var(--color-cta-bg) !important;
   }
 </style>
 
