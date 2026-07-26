@@ -1,28 +1,28 @@
 {%- comment -%}
   Reviews / Testimonials Section - The Amendment Company (1776)
-  Recreated to match Image 2 reference: 3 clean review quotes with decorative gold quotation marks,
-  bold author names, gold rating stars, and the official circular seal badge image on the right.
+  Recreated to match Image 2 reference: warm #E8D4BD background, straight line dividers between quotes,
+  decorative quote marks, and circular seal badge overlapping the footer.
 {%- endcomment -%}
 
-<div class="testimonials" style="background-color: var(--color-bg-primary); padding-top: 2.5rem; padding-bottom: 3rem; border-top: 1px solid rgba(13,27,42,0.12);">
+<div class="testimonials" style="background-color: #E8D4BD; padding-top: 1.5rem; padding-bottom: 1.5rem; border-top: 1px solid rgba(13,27,42,0.12); position: relative; z-index: 5;">
   <div class="page-width">
     
-    {%- comment -%} Reviews Container: 3 Review Items + Far Right Circular Seal Badge {%- endcomment -%}
-    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 2rem; align-items: center;">
+    {%- comment -%} Reviews Container: 3 Review Items with Vertical Dividers + Overlapping Seal Badge {%- endcomment -%}
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 1.5rem; align-items: center;">
       
       {%- for block in section.blocks -%}
-        <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+        <div style="display: flex; gap: 0.75rem; align-items: flex-start; {%- unless forloop.last -%} border-right: 1px solid rgba(13, 27, 42, 0.18); padding-right: 1.5rem; {%- endunless -%}">
           
-          {%- comment -%} Large Gold Quote Icon “ {%- endcomment -%}
-          <span style="font-family: 'Playfair Display', Georgia, serif; color: #C5A059; font-size: 2.5rem; line-height: 0.8; opacity: 0.85; user-select: none;">
+          {%- comment -%} Large Decorative Double Quote Icon “ {%- endcomment -%}
+          <span style="font-family: 'Playfair Display', Georgia, serif; color: #7A6953; font-size: 2.2rem; line-height: 0.8; opacity: 0.85; user-select: none;">
             “
           </span>
 
           <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
-            <p style="font-size: 0.84rem; color: #0D1B2A; line-height: 1.5; margin-bottom: 0.85rem; font-weight: 400;">
+            <p style="font-size: 0.82rem; color: #0D1B2A; line-height: 1.45; margin-bottom: 0.65rem; font-weight: 500;">
               "{{ block.settings.quote }}"
             </p>
-            <div style="display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem;">
+            <div style="display: flex; align-items: center; gap: 0.6rem; font-size: 0.8rem;">
               <span style="font-weight: 800; color: #0D1B2A; font-family: var(--font-body);">
                 {{ block.settings.author }}
               </span>
@@ -35,14 +35,14 @@
         </div>
       {%- endfor -%}
 
-      {%- comment -%} Far Right Circular Seal Badge Image (uni-1.1_a_replicate_this_image (1).png) {%- endcomment -%}
-      <div style="display: flex; align-items: center; justify-content: center; padding-left: 1rem;">
+      {%- comment -%} Far Right Circular Seal Badge Image (Overlapping onto Footer) {%- endcomment -%}
+      <div style="display: flex; align-items: center; justify-content: center; padding-left: 1rem; position: relative; margin-bottom: -36px; z-index: 10;">
         <img
           src="{{ 'uni-1.1_a_replicate_this_image (1).png' | asset_url }}"
           alt="Live Your Values - 1776 Estd. USA"
-          width="120"
-          height="120"
-          style="width: 115px; height: 115px; object-fit: contain; border-radius: 50%;"
+          width="130"
+          height="130"
+          style="width: 125px; height: 125px; object-fit: contain; border-radius: 50%; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.15));"
         >
       </div>
 
@@ -57,10 +57,18 @@
       grid-template-columns: 1fr 1fr !important;
       gap: 1.5rem !important;
     }
+    .testimonials .page-width > div > div {
+      border-right: none !important;
+      padding-right: 0 !important;
+    }
   }
   @media (max-width: 640px) {
     .testimonials .page-width > div {
       grid-template-columns: 1fr !important;
+    }
+    .testimonials div[style*="margin-bottom: -36px"] {
+      margin-bottom: 0 !important;
+      margin-top: 1rem !important;
     }
   }
 </style>
