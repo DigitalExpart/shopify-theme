@@ -1,49 +1,69 @@
 {%- comment -%}
-  Testimonials & Client Reviews Section - The Amendment Company
+  Reviews / Testimonials Section - The Amendment Company (1776)
+  Recreated to match Image 2 reference: 3 clean review quotes with decorative gold quotation marks,
+  bold author names, gold rating stars, and the official circular seal badge image on the right.
 {%- endcomment -%}
 
-<div class="testimonials section-spacing" style="background-color: var(--color-bg-primary); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+<div class="testimonials" style="background-color: var(--color-bg-primary); padding-top: 2.5rem; padding-bottom: 3rem; border-top: 1px solid rgba(13,27,42,0.12);">
   <div class="page-width">
-    <div style="text-align: center; margin-bottom: 3rem;">
-      <span class="subheading" style="font-size: 0.9rem; letter-spacing: 0.15em;">
-        ★ REVIEWS ★
-      </span>
-    </div>
+    
+    {%- comment -%} Reviews Container: 3 Review Items + Far Right Circular Seal Badge {%- endcomment -%}
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 2rem; align-items: center;">
+      
+      {%- for block in section.blocks -%}
+        <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+          
+          {%- comment -%} Large Gold Quote Icon “ {%- endcomment -%}
+          <span style="font-family: 'Playfair Display', Georgia, serif; color: #C5A059; font-size: 2.5rem; line-height: 0.8; opacity: 0.85; user-select: none;">
+            “
+          </span>
 
-    <div class="flex items-center gap-xl" style="flex-wrap: wrap;">
-
-      <div class="grid grid--3-col" style="flex: 1; min-width: 300px;">
-        {%- for block in section.blocks -%}
-          <div class="testimonial-card" style="background: var(--color-bg-secondary); border-radius: var(--radius-md); padding: 1.75rem; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-              <p style="font-size: 0.95rem; font-style: italic; color: var(--color-text-primary); line-height: 1.6; margin-bottom: 1.25rem;">
-                "{{ block.settings.quote }}"
-              </p>
-            </div>
-            <div class="flex-between" style="border-top: 1px solid var(--color-border); padding-top: 1rem;">
-              <div>
-                <h4 style="font-size: 0.95rem; font-family: var(--font-body); font-weight: var(--font-weight-bold); margin: 0;">
-                  {{ block.settings.author }}
-                </h4>
-              </div>
-              {% render 'rating-stars', rating: block.settings.rating %}
+          <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+            <p style="font-size: 0.84rem; color: #0D1B2A; line-height: 1.5; margin-bottom: 0.85rem; font-weight: 400;">
+              "{{ block.settings.quote }}"
+            </p>
+            <div style="display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem;">
+              <span style="font-weight: 800; color: #0D1B2A; font-family: var(--font-body);">
+                {{ block.settings.author }}
+              </span>
+              <span style="color: #C5A059; font-size: 0.78rem; letter-spacing: 0.05em;">
+                ★★★★★
+              </span>
             </div>
           </div>
-        {%- endfor -%}
-      </div>
 
-      {%- comment -%} Circular Stamp Badge {%- endcomment -%}
-      <div class="flex-center" style="width: 140px; height: 140px; border-radius: var(--radius-full); border: 2px dashed var(--color-accent-gold); padding: 0.5rem; text-align: center; color: var(--color-text-primary); background: var(--color-bg-secondary); box-shadow: var(--shadow-sm); margin: 0 auto;">
-        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; border: 1px solid var(--color-border); border-radius: var(--radius-full); padding: 0.5rem;">
-          <span style="font-size: 0.65rem; font-weight: var(--font-weight-bold); letter-spacing: 0.1em; color: var(--color-accent-gold); text-transform: uppercase;">USE YOUR VALUES</span>
-          <span style="font-size: 1.1rem; font-weight: bold; margin: 2px 0;">1776</span>
-          <span style="font-size: 0.6rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em;">ESTD. USA</span>
         </div>
+      {%- endfor -%}
+
+      {%- comment -%} Far Right Circular Seal Badge Image (uni-1.1_a_replicate_this_image (1).png) {%- endcomment -%}
+      <div style="display: flex; align-items: center; justify-content: center; padding-left: 1rem;">
+        <img
+          src="{{ 'uni-1.1_a_replicate_this_image (1).png' | asset_url }}"
+          alt="Live Your Values - 1776 Estd. USA"
+          width="120"
+          height="120"
+          style="width: 115px; height: 115px; object-fit: contain; border-radius: 50%;"
+        >
       </div>
 
     </div>
+
   </div>
 </div>
+
+<style>
+  @media (max-width: 1024px) {
+    .testimonials .page-width > div {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 1.5rem !important;
+    }
+  }
+  @media (max-width: 640px) {
+    .testimonials .page-width > div {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
 
 {% schema %}
 {
@@ -55,15 +75,6 @@
       "type": "testimonial",
       "name": "Testimonial",
       "settings": [
-        {
-          "type": "range",
-          "id": "rating",
-          "min": 1,
-          "max": 5,
-          "step": 1,
-          "default": 5,
-          "label": "Star Rating"
-        },
         {
           "type": "textarea",
           "id": "quote",

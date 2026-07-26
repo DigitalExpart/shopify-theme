@@ -1,84 +1,141 @@
 {%- comment -%}
-  Best Sellers Carousel Section
+  Best Sellers & New Arrivals Side-by-Side Dual Showcase Section
+  Recreated to match Image 2 reference layout.
 {%- endcomment -%}
 
-{%- liquid
-  assign best_coll = section.settings.collection
-  assign products_to_show = section.settings.products_to_show | default: 6
--%}
+<div class="best-sellers-new-arrivals" style="background-color: var(--color-bg-primary); padding-top: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(13,27,42,0.12); position: relative;">
+  <div class="page-width" style="position: relative;">
+    
+    {%- comment -%} Left & Right Navigation Arrow Buttons {%- endcomment -%}
+    <button type="button" aria-label="Previous" style="position: absolute; left: -15px; top: 50%; transform: translateY(-50%); z-index: 10; width: 36px; height: 36px; border-radius: 50%; background: #FFFFFF; border: 1px solid #CBD5E1; color: #0D1B2A; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
 
-<div class="best-sellers-carousel section-spacing" style="background-color: var(--color-bg-primary);">
-  <div class="page-width">
-    <div class="flex-between" style="margin-bottom: 2.5rem;">
+    <button type="button" aria-label="Next" style="position: absolute; right: -15px; top: 50%; transform: translateY(-50%); z-index: 10; width: 36px; height: 36px; border-radius: 50%; background: #FFFFFF; border: 1px solid #CBD5E1; color: #0D1B2A; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+
+    {%- comment -%} 2-Column Split: Best Sellers (Left) & New Arrivals (Right) {%- endcomment -%}
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start;">
+      
+      {%- comment -%} Column 1: BEST SELLERS {%- endcomment -%}
       <div>
-        <span class="subheading">{{ section.settings.subheading | default: 'Customer Favorites' }}</span>
-        <h2>{{ section.settings.heading | default: 'Best Sellers' }}</h2>
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <h3 style="font-family: var(--font-body); color: #0D1B2A; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; display: inline-flex; align-items: center; gap: 0.4rem;">
+            <span style="color: #C5A059; font-size: 0.85rem;">★</span>
+            <span>BEST SELLERS</span>
+            <span style="color: #C5A059; font-size: 0.85rem;">★</span>
+          </h3>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem;">
+          {%- comment -%} Product X {%- endcomment -%}
+          <div style="text-align: center;">
+            <div style="border: 1px solid rgba(13,27,42,0.1); border-radius: 4px; padding: 0.5rem; background: rgba(255,255,255,0.4); margin-bottom: 0.4rem;">
+              <img src="{{ 'sample-tee.png' | asset_url }}" alt="Product X" width="200" height="240" style="width: 100%; height: 110px; object-fit: contain;">
+            </div>
+            <h4 style="font-size: 0.78rem; font-weight: 700; color: #0D1B2A; margin: 0 0 0.15rem 0;">Product X</h4>
+            <span style="font-size: 0.75rem; font-weight: 800; color: #475569;">$29.99</span>
+          </div>
+
+          {%- comment -%} Product Y {%- endcomment -%}
+          <div style="text-align: center;">
+            <div style="border: 1px solid rgba(13,27,42,0.1); border-radius: 4px; padding: 0.5rem; background: rgba(255,255,255,0.4); margin-bottom: 0.4rem;">
+              <img src="{{ 'sample-hoodie.png' | asset_url }}" alt="Product Y" width="200" height="240" style="width: 100%; height: 110px; object-fit: contain;">
+            </div>
+            <h4 style="font-size: 0.78rem; font-weight: 700; color: #0D1B2A; margin: 0 0 0.15rem 0;">Product Y</h4>
+            <span style="font-size: 0.75rem; font-weight: 800; color: #475569;">$49.99</span>
+          </div>
+
+          {%- comment -%} Product Z {%- endcomment -%}
+          <div style="text-align: center;">
+            <div style="border: 1px solid rgba(13,27,42,0.1); border-radius: 4px; padding: 0.5rem; background: rgba(255,255,255,0.4); margin-bottom: 0.4rem;">
+              <img src="{{ 'sample-cap.png' | asset_url }}" alt="Product Z" width="200" height="240" style="width: 100%; height: 110px; object-fit: contain;">
+            </div>
+            <h4 style="font-size: 0.78rem; font-weight: 700; color: #0D1B2A; margin: 0 0 0.15rem 0;">Product Z</h4>
+            <span style="font-size: 0.75rem; font-weight: 800; color: #475569;">$24.99</span>
+          </div>
+
+          {%- comment -%} Product A1 {%- endcomment -%}
+          <div style="text-align: center;">
+            <div style="border: 1px solid rgba(13,27,42,0.1); border-radius: 4px; padding: 0.5rem; background: rgba(255,255,255,0.4); margin-bottom: 0.4rem;">
+              <img src="{{ 'sample-tee.png' | asset_url }}" alt="Product A1" width="200" height="240" style="width: 100%; height: 110px; object-fit: contain;">
+            </div>
+            <h4 style="font-size: 0.78rem; font-weight: 700; color: #0D1B2A; margin: 0 0 0.15rem 0;">Product A1</h4>
+            <span style="font-size: 0.75rem; font-weight: 800; color: #475569;">$27.99</span>
+          </div>
+        </div>
       </div>
 
-      <div class="flex items-center gap-sm">
-        <button type="button" class="icon-btn" data-carousel-prev aria-label="Previous" style="background: var(--color-bg-secondary); border: 1px solid var(--color-border);">
-          &larr;
-        </button>
-        <button type="button" class="icon-btn" data-carousel-next aria-label="Next" style="background: var(--color-bg-secondary); border: 1px solid var(--color-border);">
-          &rarr;
-        </button>
-      </div>
-    </div>
+      {%- comment -%} Column 2: NEW ARRIVALS {%- endcomment -%}
+      <div>
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <h3 style="font-family: var(--font-body); color: #0D1B2A; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; display: inline-flex; align-items: center; gap: 0.4rem;">
+            <span style="color: #C5A059; font-size: 0.85rem;">★</span>
+            <span>NEW ARRIVALS</span>
+            <span style="color: #C5A059; font-size: 0.85rem;">★</span>
+          </h3>
+        </div>
 
-    <div data-carousel style="position: relative;">
-      <div data-carousel-track style="display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1rem; scrollbar-width: none;">
-        {%- if best_coll != blank and best_coll.products.size > 0 -%}
-          {%- for product in best_coll.products limit: products_to_show -%}
-            <div style="flex: 0 0 280px; scroll-snap-align: start;">
-              {% render 'product-card', product_card_product: product, show_vendor: true %}
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem;">
+          {%- comment -%} Product B2 {%- endcomment -%}
+          <div style="text-align: center;">
+            <div style="border: 1px solid rgba(13,27,42,0.1); border-radius: 4px; padding: 0.5rem; background: rgba(255,255,255,0.4); margin-bottom: 0.4rem;">
+              <img src="{{ 'sample-hoodie.png' | asset_url }}" alt="Product B2" width="200" height="240" style="width: 100%; height: 110px; object-fit: contain;">
             </div>
-          {%- endfor -%}
-        {%- else -%}
-          {%- for i in (1..6) -%}
-            <div style="flex: 0 0 280px; scroll-snap-align: start;">
-              {% render 'product-card', show_vendor: true %}
+            <h4 style="font-size: 0.78rem; font-weight: 700; color: #0D1B2A; margin: 0 0 0.15rem 0;">Product B2</h4>
+            <span style="font-size: 0.75rem; font-weight: 800; color: #475569;">$54.99</span>
+          </div>
+
+          {%- comment -%} Product C3 {%- endcomment -%}
+          <div style="text-align: center;">
+            <div style="border: 1px solid rgba(13,27,42,0.1); border-radius: 4px; padding: 0.5rem; background: rgba(255,255,255,0.4); margin-bottom: 0.4rem;">
+              <img src="{{ 'sample-tee.png' | asset_url }}" alt="Product C3" width="200" height="240" style="width: 100%; height: 110px; object-fit: contain;">
             </div>
-          {%- endfor -%}
-        {%- endif -%}
+            <h4 style="font-size: 0.78rem; font-weight: 700; color: #0D1B2A; margin: 0 0 0.15rem 0;">Product C3</h4>
+            <span style="font-size: 0.75rem; font-weight: 800; color: #475569;">$26.99</span>
+          </div>
+
+          {%- comment -%} Product D4 {%- endcomment -%}
+          <div style="text-align: center;">
+            <div style="border: 1px solid rgba(13,27,42,0.1); border-radius: 4px; padding: 0.5rem; background: rgba(255,255,255,0.4); margin-bottom: 0.4rem;">
+              <img src="{{ 'sample-tee.png' | asset_url }}" alt="Product D4" width="200" height="240" style="width: 100%; height: 110px; object-fit: contain;">
+            </div>
+            <h4 style="font-size: 0.78rem; font-weight: 700; color: #0D1B2A; margin: 0 0 0.15rem 0;">Product D4</h4>
+            <span style="font-size: 0.75rem; font-weight: 800; color: #475569;">$29.99</span>
+          </div>
+
+          {%- comment -%} Product E5 {%- endcomment -%}
+          <div style="text-align: center;">
+            <div style="border: 1px solid rgba(13,27,42,0.1); border-radius: 4px; padding: 0.5rem; background: rgba(255,255,255,0.4); margin-bottom: 0.4rem;">
+              <img src="{{ 'sample-tee.png' | asset_url }}" alt="Product E5" width="200" height="240" style="width: 100%; height: 110px; object-fit: contain;">
+            </div>
+            <h4 style="font-size: 0.78rem; font-weight: 700; color: #0D1B2A; margin: 0 0 0.15rem 0;">Product E5</h4>
+            <span style="font-size: 0.75rem; font-weight: 800; color: #475569;">$24.99</span>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </div>
 
+<style>
+  @media (max-width: 900px) {
+    .best-sellers-new-arrivals .page-width > div:last-child {
+      grid-template-columns: 1fr !important;
+      gap: 2rem !important;
+    }
+  }
+</style>
+
 {% schema %}
 {
-  "name": "Best Sellers Carousel",
-  "settings": [
-    {
-      "type": "text",
-      "id": "subheading",
-      "label": "Subheading",
-      "default": "Customer Favorites"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Best Sellers"
-    },
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection"
-    },
-    {
-      "type": "range",
-      "id": "products_to_show",
-      "min": 4,
-      "max": 12,
-      "step": 2,
-      "default": 8,
-      "label": "Products to Show"
-    }
-  ],
+  "name": "Best Sellers Showcase",
+  "settings": [],
   "presets": [
     {
-      "name": "Best Sellers Carousel"
+      "name": "Best Sellers & New Arrivals"
     }
   ]
 }
