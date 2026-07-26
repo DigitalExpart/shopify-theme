@@ -8,10 +8,9 @@
 
       {%- comment -%} Column 1: Brand Summary {%- endcomment -%}
       <div>
-        <h3 style="font-family: var(--font-heading); color: #FFFFFF; font-size: 1.35rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; display: flex; flex-direction: column;">
-          <span>THE AMENDMENT COMPANY</span>
-          <span style="font-size: 0.75rem; color: var(--color-accent-gold); letter-spacing: 0.2em; font-weight: normal; margin-top: 0.2rem;">&#8212; 1776 &#8212;</span>
-        </h3>
+        <div style="margin-bottom: 1rem;">
+          <img src="{{ 'seedream-5.0-pro_a_help_me_recrete_this.jpeg' | asset_url }}" alt="The Amendment Company 1776" width="180" height="50" style="object-fit: contain; max-height: 55px; filter: brightness(0) invert(1);">
+        </div>
         <p style="color: #94A3B8; font-size: 0.85rem; line-height: 1.6; margin-bottom: 1.5rem;">
           {{ section.settings.brand_description | default: 'Constitutionally inspired apparel for patriots who value freedom, faith, and family.' }}
         </p>
