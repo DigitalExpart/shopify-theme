@@ -1,113 +1,161 @@
 {%- comment -%}
-  Featured Collection Section
+  Featured Products Section - The Amendment Company (1776)
+  Recreated to match Image 1 reference: 6-item carousel with dark navy circular arrow buttons and infinite scroll behavior.
 {%- endcomment -%}
 
-{%- liquid
-  assign featured_coll = section.settings.collection
-  assign products_to_show = section.settings.products_to_show | default: 4
--%}
-
-<div class="featured-collection section-spacing" style="background-color: var(--color-bg-primary);">
-  <div class="page-width">
-    <div class="flex-between" style="margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem;">
-      <div>
-        {%- if section.settings.subheading != blank -%}
-          <span class="subheading">{{ section.settings.subheading }}</span>
-        {%- endif -%}
-        <h2>{{ section.settings.heading | default: featured_coll.title | default: 'Featured Collection' }}</h2>
-      </div>
-
-      {%- if featured_coll != blank -%}
-        <a href="{{ featured_coll.url }}" class="btn btn--outline btn--sm">
-          View Collection &rarr;
-        </a>
-      {%- endif -%}
+<div class="featured-products-carousel" style="background-color: var(--color-bg-primary); padding-top: 2.5rem; padding-bottom: 3.5rem; position: relative;">
+  <div class="page-width" style="position: relative;">
+    
+    {%- comment -%} Heading ★ FEATURED PRODUCTS ★ {%- endcomment -%}
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <h2 style="font-family: var(--font-body); color: #0D1B2A; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; display: inline-flex; align-items: center; gap: 0.5rem;">
+        <span style="color: #C5A059; font-size: 0.85rem;">★</span>
+        <span>FEATURED PRODUCTS</span>
+        <span style="color: #C5A059; font-size: 0.85rem;">★</span>
+      </h2>
     </div>
 
-    {%- if section.settings.enable_carousel -%}
-      <div data-carousel style="position: relative;">
-        <div data-carousel-track style="display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1rem; scrollbar-width: none;">
-          {%- if featured_coll != blank and featured_coll.products.size > 0 -%}
-            {%- for product in featured_coll.products limit: products_to_show -%}
-              <div style="flex: 0 0 280px; scroll-snap-align: start;">
-                {% render 'product-card', product_card_product: product, show_vendor: section.settings.show_vendor %}
-              </div>
-            {%- endfor -%}
-          {%- else -%}
-            {%- for i in (1..4) -%}
-              <div style="flex: 0 0 280px; scroll-snap-align: start;">
-                {% render 'product-card', show_vendor: section.settings.show_vendor %}
-              </div>
-            {%- endfor -%}
-          {%- endif -%}
-        </div>
+    {%- comment -%} Responsive Circular Dark Navy Arrow Buttons {%- endcomment -%}
+    <button
+      type="button"
+      id="featured-prev-btn"
+      aria-label="Previous Products"
+      style="position: absolute; left: -16px; top: 58%; transform: translateY(-50%); z-index: 10; width: 40px; height: 40px; border-radius: 50%; background: #0D1B2A; color: #FFFFFF; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 3px 10px rgba(0,0,0,0.25); transition: background 0.2s;"
+      onmouseenter="this.style.background='#A31C1C'"
+      onmouseleave="this.style.background='#0D1B2A'"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
 
-        <button type="button" class="icon-btn" data-carousel-prev aria-label="Previous" style="position: absolute; top: 40%; left: -20px; background: var(--color-bg-secondary); border: 1px solid var(--color-border); box-shadow: var(--shadow-md); z-index: 5;">
-          &larr;
-        </button>
-        <button type="button" class="icon-btn" data-carousel-next aria-label="Next" style="position: absolute; top: 40%; right: -20px; background: var(--color-bg-secondary); border: 1px solid var(--color-border); box-shadow: var(--shadow-md); z-index: 5;">
-          &rarr;
-        </button>
+    <button
+      type="button"
+      id="featured-next-btn"
+      aria-label="Next Products"
+      style="position: absolute; right: -16px; top: 58%; transform: translateY(-50%); z-index: 10; width: 40px; height: 40px; border-radius: 50%; background: #0D1B2A; color: #FFFFFF; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 3px 10px rgba(0,0,0,0.25); transition: background 0.2s;"
+      onmouseenter="this.style.background='#A31C1C'"
+      onmouseleave="this.style.background='#0D1B2A'"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+
+    {%- comment -%} Horizontal Scrollable Track {%- endcomment -%}
+    <div id="featured-products-track" style="display: flex; gap: 1rem; overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 0.5rem;">
+      
+      {%- comment -%} Product 1: Product X {%- endcomment -%}
+      <div style="flex: 0 0 calc(16.666% - 0.85rem); min-width: 170px; scroll-snap-align: start; text-align: left;">
+        <div style="border: 1px solid rgba(13,27,42,0.12); border-radius: 6px; padding: 0.75rem; background: #FFFFFF; margin-bottom: 0.6rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+          <img src="{{ 'sample-tee.png' | asset_url }}" alt="Product X" width="300" height="360" style="width: 100%; height: 160px; object-fit: contain;">
+        </div>
+        <h3 style="font-size: 0.82rem; font-weight: 700; color: #0D1B2A; margin: 0 0 0.2rem 0; font-family: var(--font-body);">Product X</h3>
+        <div style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; color: #C5A059; margin-bottom: 0.25rem;">
+          <span>★★★★★</span>
+          <span style="color: #64748B;">(256)</span>
+        </div>
+        <span style="font-size: 0.85rem; font-weight: 800; color: #0D1B2A;">$28.99</span>
       </div>
-    {%- else -%}
-      <div class="grid grid--4-col">
-        {%- if featured_coll != blank and featured_coll.products.size > 0 -%}
-          {%- for product in featured_coll.products limit: products_to_show -%}
-            {% render 'product-card', product_card_product: product, show_vendor: section.settings.show_vendor %}
-          {%- endfor -%}
-        {%- else -%}
-          {%- for i in (1..4) -%}
-            {% render 'product-card', show_vendor: section.settings.show_vendor %}
-          {%- endfor -%}
-        {%- endif -%}
+
+      {%- comment -%} Product 2: Product Y {%- endcomment -%}
+      <div style="flex: 0 0 calc(16.666% - 0.85rem); min-width: 170px; scroll-snap-align: start; text-align: left;">
+        <div style="border: 1px solid rgba(13,27,42,0.12); border-radius: 6px; padding: 0.75rem; background: #FFFFFF; margin-bottom: 0.6rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+          <img src="{{ 'sample-hoodie.png' | asset_url }}" alt="Product Y" width="300" height="360" style="width: 100%; height: 160px; object-fit: contain;">
+        </div>
+        <h3 style="font-size: 0.82rem; font-weight: 700; color: #0D1B2A; margin: 0 0 0.2rem 0; font-family: var(--font-body);">Product Y</h3>
+        <div style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; color: #C5A059; margin-bottom: 0.25rem;">
+          <span>★★★★★</span>
+          <span style="color: #64748B;">(187)</span>
+        </div>
+        <span style="font-size: 0.85rem; font-weight: 800; color: #0D1B2A;">$49.99</span>
       </div>
-    {%- endif -%}
+
+      {%- comment -%} Product 3: Product Z {%- endcomment -%}
+      <div style="flex: 0 0 calc(16.666% - 0.85rem); min-width: 170px; scroll-snap-align: start; text-align: left;">
+        <div style="border: 1px solid rgba(13,27,42,0.12); border-radius: 6px; padding: 0.75rem; background: #FFFFFF; margin-bottom: 0.6rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+          <img src="{{ 'sample-cap.png' | asset_url }}" alt="Product Z" width="300" height="360" style="width: 100%; height: 160px; object-fit: contain;">
+        </div>
+        <h3 style="font-size: 0.82rem; font-weight: 700; color: #0D1B2A; margin: 0 0 0.2rem 0; font-family: var(--font-body);">Product Z</h3>
+        <div style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; color: #C5A059; margin-bottom: 0.25rem;">
+          <span>★★★★★</span>
+          <span style="color: #64748B;">(142)</span>
+        </div>
+        <span style="font-size: 0.85rem; font-weight: 800; color: #0D1B2A;">$24.99</span>
+      </div>
+
+      {%- comment -%} Product 4: Product A1 {%- endcomment -%}
+      <div style="flex: 0 0 calc(16.666% - 0.85rem); min-width: 170px; scroll-snap-align: start; text-align: left;">
+        <div style="border: 1px solid rgba(13,27,42,0.12); border-radius: 6px; padding: 0.75rem; background: #FFFFFF; margin-bottom: 0.6rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+          <img src="{{ 'sample-tee.png' | asset_url }}" alt="Product A1" width="300" height="360" style="width: 100%; height: 160px; object-fit: contain;">
+        </div>
+        <h3 style="font-size: 0.82rem; font-weight: 700; color: #0D1B2A; margin: 0 0 0.2rem 0; font-family: var(--font-body);">Product A1</h3>
+        <div style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; color: #C5A059; margin-bottom: 0.25rem;">
+          <span>★★★★★</span>
+          <span style="color: #64748B;">(203)</span>
+        </div>
+        <span style="font-size: 0.85rem; font-weight: 800; color: #0D1B2A;">$27.99</span>
+      </div>
+
+      {%- comment -%} Product 5: Product B2 {%- endcomment -%}
+      <div style="flex: 0 0 calc(16.666% - 0.85rem); min-width: 170px; scroll-snap-align: start; text-align: left;">
+        <div style="border: 1px solid rgba(13,27,42,0.12); border-radius: 6px; padding: 0.75rem; background: #FFFFFF; margin-bottom: 0.6rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+          <img src="{{ 'sample-hoodie.png' | asset_url }}" alt="Product B2" width="300" height="360" style="width: 100%; height: 160px; object-fit: contain;">
+        </div>
+        <h3 style="font-size: 0.82rem; font-weight: 700; color: #0D1B2A; margin: 0 0 0.2rem 0; font-family: var(--font-body);">Product B2</h3>
+        <div style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; color: #C5A059; margin-bottom: 0.25rem;">
+          <span>★★★★★</span>
+          <span style="color: #64748B;">(376)</span>
+        </div>
+        <span style="font-size: 0.85rem; font-weight: 800; color: #0D1B2A;">$37.99</span>
+      </div>
+
+      {%- comment -%} Product 6: Product C3 {%- endcomment -%}
+      <div style="flex: 0 0 calc(16.666% - 0.85rem); min-width: 170px; scroll-snap-align: start; text-align: left;">
+        <div style="border: 1px solid rgba(13,27,42,0.12); border-radius: 6px; padding: 0.75rem; background: #FFFFFF; margin-bottom: 0.6rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+          <img src="{{ 'sample-tee.png' | asset_url }}" alt="Product C3" width="300" height="360" style="width: 100%; height: 160px; object-fit: contain;">
+        </div>
+        <h3 style="font-size: 0.82rem; font-weight: 700; color: #0D1B2A; margin: 0 0 0.2rem 0; font-family: var(--font-body);">Product C3</h3>
+        <div style="display: flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; color: #C5A059; margin-bottom: 0.25rem;">
+          <span>★★★★★</span>
+          <span style="color: #64748B;">(101)</span>
+        </div>
+        <span style="font-size: 0.85rem; font-weight: 800; color: #0D1B2A;">$26.99</span>
+      </div>
+
+    </div>
+
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const track = document.getElementById('featured-products-track');
+    const prevBtn = document.getElementById('featured-prev-btn');
+    const nextBtn = document.getElementById('featured-next-btn');
+
+    if (!track || !prevBtn || !nextBtn) return;
+
+    const scrollAmount = 240;
+
+    nextBtn.addEventListener('click', function() {
+      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
+    });
+
+    prevBtn.addEventListener('click', function() {
+      if (track.scrollLeft <= 10) {
+        track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
 
 {% schema %}
 {
   "name": "Featured Collection",
-  "settings": [
-    {
-      "type": "text",
-      "id": "subheading",
-      "label": "Subheading",
-      "default": "Handpicked Favorites"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Featured Collection"
-    },
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection"
-    },
-    {
-      "type": "range",
-      "id": "products_to_show",
-      "min": 2,
-      "max": 12,
-      "step": 2,
-      "default": 4,
-      "label": "Products to Show"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_carousel",
-      "label": "Enable horizontal carousel",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "show_vendor",
-      "label": "Show product vendor",
-      "default": true
-    }
-  ],
+  "settings": [],
   "presets": [
     {
       "name": "Featured Collection"
