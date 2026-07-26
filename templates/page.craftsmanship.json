@@ -1,0 +1,12 @@
+{
+  "name": "Craftsmanship",
+  "sections": {
+    "main": {
+      "type": "main-craftsmanship",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

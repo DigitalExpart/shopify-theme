@@ -1,0 +1,12 @@
+{
+  "name": "Size Guide",
+  "sections": {
+    "main": {
+      "type": "main-size-guide",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

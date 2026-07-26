@@ -1,0 +1,12 @@
+{
+  "name": "Our Mission",
+  "sections": {
+    "main": {
+      "type": "main-our-mission",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,66 @@
+{%- comment -%}
+  List Collections Main Section - The Amendment Company (1776)
+{%- endcomment -%}
+
+<div class="list-collections-section" style="background-color: var(--color-bg-primary); padding-top: 4rem; padding-bottom: 5rem;">
+  <div class="page-width">
+    
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <span style="color: #C5A059; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;">
+        ★ EXPLORE THE LINEUP ★
+      </span>
+
+      <h1 style="font-family: 'Oswald', sans-serif; font-size: 2.8rem; font-weight: 800; color: #0D1B2A; margin: 0.5rem 0 1rem 0; text-transform: uppercase; letter-spacing: 0.02em;">
+        ALL COLLECTIONS
+      </h1>
+
+      <div style="width: 120px; height: 3px; background: #B81D1D; margin: 0 auto;"></div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;">
+      {%- comment -%} Collection Cards {%- endcomment -%}
+      {%- for collection in collections -%}
+        <a href="{{ collection.url }}" style="position: relative; height: 260px; border-radius: 8px; overflow: hidden; display: block; text-decoration: none; border: 1px solid rgba(13,27,42,0.1); box-shadow: 0 4px 15px rgba(0,0,0,0.12);">
+          {%- if collection.featured_image -%}
+            <img src="{{ collection.featured_image | image_url: width: 600 }}" alt="{{ collection.title }}" loading="lazy" width="600" height="400" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+          {%- else -%}
+            <img src="{{ 'sample-tee.png' | asset_url }}" alt="{{ collection.title }}" loading="lazy" width="600" height="400" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+          {%- endif -%}
+          <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%);"></div>
+          <div style="position: absolute; inset: 0; padding: 1.25rem; display: flex; flex-direction: column; justify-content: flex-end; color: #FFFFFF; text-align: center;">
+            <h3 style="font-family: 'Oswald', sans-serif; color: #FFFFFF; font-size: 1.2rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">
+              {{ collection.title }}
+            </h3>
+            <span style="font-size: 0.78rem; color: #C5A059; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">
+              VIEW COLLECTION &rarr;
+            </span>
+          </div>
+        </a>
+      {%- else -%}
+        {%- assign sample_titles = "Premium Tees,Hoodies & Sweatshirts,Hats & Accessories,Home & Decor,Collection A,Collection B,Series 01,Patriot Essentials" | split: "," -%}
+        {%- for title in sample_titles -%}
+          <a href="{{ routes.all_products_collection_url }}" style="position: relative; height: 260px; border-radius: 8px; overflow: hidden; display: block; text-decoration: none; border: 1px solid rgba(13,27,42,0.1); box-shadow: 0 4px 15px rgba(0,0,0,0.12);">
+            <img src="{{ 'sample-tee.png' | asset_url }}" alt="{{ title }}" loading="lazy" width="600" height="400" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%);"></div>
+            <div style="position: absolute; inset: 0; padding: 1.25rem; display: flex; flex-direction: column; justify-content: flex-end; color: #FFFFFF; text-align: center;">
+              <h3 style="font-family: 'Oswald', sans-serif; color: #FFFFFF; font-size: 1.2rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">
+                {{ title }}
+              </h3>
+              <span style="font-size: 0.78rem; color: #C5A059; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">
+                VIEW COLLECTION &rarr;
+              </span>
+            </div>
+          </a>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main List Collections",
+  "settings": []
+}
+{% endschema %}

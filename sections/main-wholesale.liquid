@@ -1,0 +1,54 @@
+{%- comment -%}
+  Wholesale Main Section - The Amendment Company (1776)
+{%- endcomment -%}
+
+<div class="wholesale-section" style="background-color: var(--color-bg-primary); padding-top: 4rem; padding-bottom: 5rem;">
+  <div class="page-width" style="max-width: 800px; margin: 0 auto; text-align: center;">
+    
+    <span style="color: #C5A059; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;">
+      ★ RETAIL PARTNERSHIPS ★
+    </span>
+
+    <h1 style="font-family: 'Oswald', sans-serif; font-size: 2.8rem; font-weight: 800; color: #0D1B2A; margin: 0.5rem 0 1.5rem 0; text-transform: uppercase; letter-spacing: 0.02em;">
+      WHOLESALE INQUIRIES
+    </h1>
+
+    <div style="width: 120px; height: 3px; background: #B81D1D; margin: 0 auto 2.5rem auto;"></div>
+
+    <p style="font-size: 1.05rem; color: #4A5568; line-height: 1.6; margin-bottom: 2.5rem;">
+      Interested in stocking <strong>The Amendment Company</strong> apparel in your storefront or boutique? We partner with brick-and-mortar retailers nationwide. Fill out the form below to request our wholesale catalog and pricing.
+    </p>
+
+    <div style="background: #FFFFFF; padding: 2.5rem; border-radius: 8px; border: 1px solid rgba(13,27,42,0.1); box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: left;">
+      {% form 'contact', id: 'WholesaleForm' %}
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div>
+            <label style="display: block; font-size: 0.82rem; font-weight: 700; color: #0D1B2A; margin-bottom: 0.35rem;">Store / Business Name</label>
+            <input type="text" name="contact[store_name]" required style="width: 100%; padding: 0.75rem; border: 1px solid rgba(13,27,42,0.2); border-radius: 4px;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.82rem; font-weight: 700; color: #0D1B2A; margin-bottom: 0.35rem;">Contact Email</label>
+            <input type="email" name="contact[email]" required style="width: 100%; padding: 0.75rem; border: 1px solid rgba(13,27,42,0.2); border-radius: 4px;">
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; color: #0D1B2A; margin-bottom: 0.35rem;">Tell Us About Your Retail Store</label>
+          <textarea name="contact[body]" rows="4" style="width: 100%; padding: 0.75rem; border: 1px solid rgba(13,27,42,0.2); border-radius: 4px;"></textarea>
+        </div>
+
+        <button type="submit" class="btn" style="width: 100%; background-color: #0D1B2A; color: #FFFFFF; font-weight: 800; padding: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; border: none; border-radius: 3px; cursor: pointer;">
+          SUBMIT WHOLESALE APPLICATION
+        </button>
+      {% endform %}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main Wholesale",
+  "settings": []
+}
+{% endschema %}

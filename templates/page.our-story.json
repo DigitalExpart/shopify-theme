@@ -1,0 +1,12 @@
+{
+  "name": "Our Story",
+  "sections": {
+    "main": {
+      "type": "main-our-story",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

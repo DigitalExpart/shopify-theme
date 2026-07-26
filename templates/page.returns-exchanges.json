@@ -1,0 +1,12 @@
+{
+  "name": "Returns & Exchanges",
+  "sections": {
+    "main": {
+      "type": "main-returns-exchanges",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

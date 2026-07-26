@@ -1,0 +1,12 @@
+{
+  "name": "Wholesale",
+  "sections": {
+    "main": {
+      "type": "main-wholesale",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

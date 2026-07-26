@@ -1,0 +1,12 @@
+{
+  "name": "Shipping Policy",
+  "sections": {
+    "main": {
+      "type": "main-shipping-policy",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
