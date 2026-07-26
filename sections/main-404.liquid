@@ -1,23 +1,83 @@
 {%- comment -%}
-  Main 404 Page Section
+  Main 404 Page & Fallback Catalog Section - The Amendment Company (1776)
+  Renders a rich patriotic showcase so no page ever feels dead.
 {%- endcomment -%}
 
-<div class="main-404 page-width page-width--narrow section-spacing" style="text-align: center; padding-top: 6rem; padding-bottom: 6rem;">
-  <span class="subheading" style="font-size: 1rem; color: var(--color-accent-gold);">Error 404</span>
-  <h1 style="font-size: clamp(3rem, 6vw, 5rem); margin-bottom: 1rem; font-family: var(--font-heading);">
-    Page Not Found
-  </h1>
-  <p style="font-size: 1.15rem; color: var(--color-text-secondary); max-width: 500px; margin: 0 auto 2.5rem auto;">
-    The page you are looking for may have been removed, renamed, or is temporarily unavailable.
-  </p>
+<div class="main-404" style="background-color: var(--color-bg-primary); padding-top: 4rem; padding-bottom: 5rem; text-align: center;">
+  <div class="page-width">
+    
+    <span style="font-size: 0.9rem; color: #C5A059; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;">
+      ★ THE AMENDMENT COMPANY CATALOG ★
+    </span>
+    
+    <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); margin-top: 0.5rem; margin-bottom: 0.75rem; font-family: 'Oswald', sans-serif; color: #0D1B2A; text-transform: uppercase;">
+      EXPLORE OUR PATRIOTIC COLLECTION
+    </h1>
+    
+    <p style="font-size: 1.05rem; color: #4A5568; max-width: 600px; margin: 0 auto 2rem auto; line-height: 1.6;">
+      Welcome to The Amendment Company! Browse our full lineup of constitutionally inspired tees, hoodies, and accessories below.
+    </p>
 
-  <div class="flex-center gap-md">
-    <a href="{{ routes.root_url }}" class="btn btn--primary">
-      Return to Homepage
-    </a>
-    <a href="{{ routes.all_products_collection_url }}" class="btn btn--outline">
-      Explore Catalog
-    </a>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap;">
+      <a href="{{ routes.root_url }}" class="btn" style="background-color: #0D1B2A; color: #FFFFFF; font-weight: 800; padding: 0.85rem 2rem; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none;">
+        RETURN TO HOMEPAGE
+      </a>
+      <a href="{{ routes.all_products_collection_url }}" class="btn" style="background-color: #B81D1D; color: #FFFFFF; font-weight: 800; padding: 0.85rem 2rem; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none;">
+        SHOP ALL PRODUCTS
+      </a>
+    </div>
+
+    {%- comment -%} Featured Catalog Grid {%- endcomment -%}
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <h2 style="font-family: var(--font-body); color: #0D1B2A; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; display: inline-flex; align-items: center; gap: 0.5rem;">
+        <span style="color: #C5A059; font-size: 0.85rem;">★</span>
+        <span>FEATURED PRODUCTS</span>
+        <span style="color: #C5A059; font-size: 0.85rem;">★</span>
+      </h2>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; text-align: left;">
+      {%- comment -%} Product 1 {%- endcomment -%}
+      <div style="border: 1px solid rgba(13,27,42,0.12); border-radius: 6px; padding: 1rem; background: #FFFFFF; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+        <a href="{{ routes.all_products_collection_url }}" style="text-decoration: none; color: inherit;">
+          <img src="{{ 'sample-tee.png' | asset_url }}" alt="Product X" width="300" height="360" style="width: 100%; height: 200px; object-fit: contain; margin-bottom: 0.75rem;">
+          <h3 style="font-size: 0.95rem; font-weight: 700; color: #0D1B2A; margin: 0 0 0.3rem 0;">Product X</h3>
+          <div style="color: #C5A059; font-size: 0.8rem; margin-bottom: 0.4rem;">★★★★★ <span style="color: #64748B;">(256)</span></div>
+          <span style="font-size: 0.95rem; font-weight: 800; color: #0D1B2A;">$28.99</span>
+        </a>
+      </div>
+
+      {%- comment -%} Product 2 {%- endcomment -%}
+      <div style="border: 1px solid rgba(13,27,42,0.12); border-radius: 6px; padding: 1rem; background: #FFFFFF; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+        <a href="{{ routes.all_products_collection_url }}" style="text-decoration: none; color: inherit;">
+          <img src="{{ 'sample-hoodie.png' | asset_url }}" alt="Product Y" width="300" height="360" style="width: 100%; height: 200px; object-fit: contain; margin-bottom: 0.75rem;">
+          <h3 style="font-size: 0.95rem; font-weight: 700; color: #0D1B2A; margin: 0 0 0.3rem 0;">Product Y</h3>
+          <div style="color: #C5A059; font-size: 0.8rem; margin-bottom: 0.4rem;">★★★★★ <span style="color: #64748B;">(187)</span></div>
+          <span style="font-size: 0.95rem; font-weight: 800; color: #0D1B2A;">$49.99</span>
+        </a>
+      </div>
+
+      {%- comment -%} Product 3 {%- endcomment -%}
+      <div style="border: 1px solid rgba(13,27,42,0.12); border-radius: 6px; padding: 1rem; background: #FFFFFF; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+        <a href="{{ routes.all_products_collection_url }}" style="text-decoration: none; color: inherit;">
+          <img src="{{ 'sample-cap.png' | asset_url }}" alt="Product Z" width="300" height="360" style="width: 100%; height: 200px; object-fit: contain; margin-bottom: 0.75rem;">
+          <h3 style="font-size: 0.95rem; font-weight: 700; color: #0D1B2A; margin: 0 0 0.3rem 0;">Product Z</h3>
+          <div style="color: #C5A059; font-size: 0.8rem; margin-bottom: 0.4rem;">★★★★★ <span style="color: #64748B;">(142)</span></div>
+          <span style="font-size: 0.95rem; font-weight: 800; color: #0D1B2A;">$24.99</span>
+        </a>
+      </div>
+
+      {%- comment -%} Product 4 {%- endcomment -%}
+      <div style="border: 1px solid rgba(13,27,42,0.12); border-radius: 6px; padding: 1rem; background: #FFFFFF; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+        <a href="{{ routes.all_products_collection_url }}" style="text-decoration: none; color: inherit;">
+          <img src="{{ 'sample-tee.png' | asset_url }}" alt="Product A1" width="300" height="360" style="width: 100%; height: 200px; object-fit: contain; margin-bottom: 0.75rem;">
+          <h3 style="font-size: 0.95rem; font-weight: 700; color: #0D1B2A; margin: 0 0 0.3rem 0;">Product A1</h3>
+          <div style="color: #C5A059; font-size: 0.8rem; margin-bottom: 0.4rem;">★★★★★ <span style="color: #64748B;">(203)</span></div>
+          <span style="font-size: 0.95rem; font-weight: 800; color: #0D1B2A;">$27.99</span>
+        </a>
+      </div>
+    </div>
+
   </div>
 </div>
 

@@ -60,7 +60,9 @@
               {{ block.settings.description }}
             </p>
             {%- if block.settings.button_label != blank -%}
-              <a href="{{ block.settings.button_link | default: '#' }}" style="font-size: 0.78rem; font-weight: 800; color: #C5A059; text-transform: uppercase; letter-spacing: 0.08em; display: inline-flex; align-items: center; gap: 0.35rem; text-decoration: none; transition: color 0.2s;" onmouseenter="this.style.color='#FFFFFF'" onmouseleave="this.style.color='#C5A059'">
+              {%- assign pillar_link = block.settings.button_link -%}
+              {%- if pillar_link == blank or pillar_link == '#' -%}{%- assign pillar_link = routes.root_url | append: 'pages/our-story' -%}{%- endif -%}
+              <a href="{{ pillar_link }}" style="font-size: 0.78rem; font-weight: 800; color: #C5A059; text-transform: uppercase; letter-spacing: 0.08em; display: inline-flex; align-items: center; gap: 0.35rem; text-decoration: none; transition: color 0.2s;" onmouseenter="this.style.color='#FFFFFF'" onmouseleave="this.style.color='#C5A059'">
                 <span>{{ block.settings.button_label }}</span> &rarr;
               </a>
             {%- endif -%}

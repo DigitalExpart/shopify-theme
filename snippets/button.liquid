@@ -2,7 +2,7 @@
   Renders a customizable theme button.
   Accepts:
   - label: {String} Button text
-  - link: {String} Optional URL (renders <a> if present, <button> otherwise)
+  - link: {String} Optional URL (defaults to routes.all_products_collection_url)
   - style: {String} 'primary' | 'secondary' | 'outline' | 'gold' (default: 'primary')
   - class: {String} Additional CSS classes
   - type: {String} Button type attribute (default: 'button')
@@ -15,24 +15,17 @@
   if class != blank
     assign btn_class = btn_class | append: ' ' | append: class
   endif
+  assign target_url = link
+  if target_url == blank or target_url == '#'
+    assign target_url = routes.all_products_collection_url
+  endif
 -%}
 
-{%- if link != blank -%}
-  <a href="{{ link }}" class="{{ btn_class }}" {{ attributes }}>
-    <span>{{ label }}</span>
-    {%- if icon != blank -%}
-      {% render icon %}
-    {%- elsif show_arrow -%}
-      {% render 'icon-arrow' %}
-    {%- endif -%}
-  </a>
-{%- else -%}
-  <button type="{{ type | default: 'button' }}" class="{{ btn_class }}" {{ attributes }}>
-    <span>{{ label }}</span>
-    {%- if icon != blank -%}
-      {% render icon %}
-    {%- elsif show_arrow -%}
-      {% render 'icon-arrow' %}
-    {%- endif -%}
-  </button>
-{%- endif -%}
+<a href="{{ target_url }}" class="{{ btn_class }}" {{ attributes }}>
+  <span>{{ label }}</span>
+  {%- if icon != blank -%}
+    {% render icon %}
+  {%- elsif show_arrow -%}
+    {% render 'icon-arrow' %}
+  {%- endif -%}
+</a>
