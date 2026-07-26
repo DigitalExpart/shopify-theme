@@ -16,11 +16,22 @@
       {%- for block in section.blocks -%}
         <div class="pillar-card" style="background: var(--color-bg-secondary); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--color-border); display: flex; flex-direction: column; position: relative;">
           <div class="media-wrapper media-wrapper--portrait">
-            {%- if block.settings.image != blank -%}
-              <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="800" height="1000">
-            {%- else -%}
-              {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
-            {%- endif -%}
+            {%- liquid
+              assign pillar_img = block.settings.image
+              if pillar_img != blank
+                assign pillar_src = pillar_img | image_url: width: 800
+              else
+                case forloop.index
+                  when 1
+                    assign pillar_src = 'seedream-5.0-pro_a_help_me_recrete_this.jpeg' | asset_url
+                  when 2
+                    assign pillar_src = 'seedream-5.0-pro_a_help_replicate_this_.jpeg' | asset_url
+                  else
+                    assign pillar_src = 'seedream-5.0-pro_a_help_replicate_this_ (2).jpeg' | asset_url
+                endcase
+              endif
+            -%}
+            <img src="{{ pillar_src }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="800" height="1000">
             <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,27,42,0.92) 0%, rgba(13,27,42,0.3) 60%);"></div>
           </div>
           <div style="position: absolute; inset: 0; padding: 2rem; display: flex; flex-direction: column; justify-content: flex-end; color: #FFFFFF;">

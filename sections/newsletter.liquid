@@ -3,11 +3,15 @@
 {%- endcomment -%}
 
 <div class="brand-meaning-banner section-spacing" style="position: relative; background-color: var(--color-text-primary); color: #FFFFFF; text-align: center; min-height: 420px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-  {%- if section.settings.image != blank -%}
-    <img src="{{ section.settings.image | image_url: width: 2000 }}" alt="A Brand With Meaning" loading="lazy" width="2000" height="800" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
-  {%- else -%}
-    <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(13,27,42,0.9) 0%, rgba(138,30,30,0.5) 100%);"></div>
-  {%- endif -%}
+  {%- liquid
+    assign banner_img = section.settings.image
+    if banner_img != blank
+      assign banner_src = banner_img | image_url: width: 2000
+    else
+      assign banner_src = 'seedream-5.0-pro_a_remove_all_text_and_.jpeg' | asset_url
+    endif
+  -%}
+  <img src="{{ banner_src }}" alt="A Brand With Meaning" loading="lazy" width="2000" height="800" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
 
   <div style="position: absolute; inset: 0; background-color: rgba(13, 27, 42, 0.45);"></div>
 
