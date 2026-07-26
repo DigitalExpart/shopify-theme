@@ -75,19 +75,7 @@
     },
     "best_sellers": {
       "type": "best-sellers-carousel",
-      "settings": {
-        "subheading": "★ BEST SELLERS ★",
-        "heading": "",
-        "products_to_show": 4
-      }
-    },
-    "new_arrivals": {
-      "type": "new-arrivals-carousel",
-      "settings": {
-        "subheading": "★ NEW ARRIVALS ★",
-        "heading": "",
-        "products_to_show": 4
-      }
+      "settings": {}
     },
     "testimonials": {
       "type": "testimonials",
@@ -108,7 +96,6 @@
     "brand_story",
     "newsletter",
     "best_sellers",
-    "new_arrivals",
     "testimonials"
   ]
 }
