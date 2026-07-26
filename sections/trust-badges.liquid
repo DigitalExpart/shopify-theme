@@ -1,40 +1,42 @@
 {%- comment -%}
-  Trust Badges Section - The Amendment Company
+  Trust Badges Section - Recreated to match client reference exactly.
+  Full-width parchment row, circular outlined icons, vertical dividers.
 {%- endcomment -%}
 
-<div class="trust-badges section-spacing" style="background-color: var(--color-bg-tertiary); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding-top: 2rem; padding-bottom: 2rem;">
-  <div class="page-width">
-    {%- if section.settings.heading != blank -%}
-      <div style="text-align: center; margin-bottom: 2rem;">
-        <span class="subheading">{{ section.settings.subheading }}</span>
-        <h2 style="font-size: 1.85rem;">{{ section.settings.heading }}</h2>
-      </div>
-    {%- endif -%}
-
-    <div class="grid grid--4-col">
+<div class="trust-badges-row" style="background-color: #F8F5F0; border-top: 1px solid #D8CEBE; border-bottom: 1px solid #D8CEBE; width: 100%;">
+  <div class="page-width" style="padding-top: 0; padding-bottom: 0;">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
       {%- for block in section.blocks -%}
-        {% render 'icon-card', icon_name: block.settings.icon, title: block.settings.title, subtitle: block.settings.subtitle %}
+        {%- assign is_last_item = false -%}
+        {%- if forloop.last -%}
+          {%- assign is_last_item = true -%}
+        {%- endif -%}
+        {% render 'icon-card', icon_name: block.settings.icon, title: block.settings.title, subtitle: block.settings.subtitle, is_last: is_last_item %}
       {%- endfor -%}
     </div>
   </div>
 </div>
 
+<style>
+  @media (max-width: 850px) {
+    .trust-badge-item {
+      border-right: none !important;
+      border-bottom: 1px solid #D8CEBE;
+      width: 100%;
+      justify-content: flex-start;
+      padding: 0.85rem 1rem !important;
+    }
+    .trust-badge-item:last-child {
+      border-bottom: none !important;
+    }
+  }
+</style>
+
 {% schema %}
 {
-  "name": "Trust Badges",
+  "name": "Trust Badges Row",
   "max_blocks": 4,
-  "settings": [
-    {
-      "type": "text",
-      "id": "subheading",
-      "label": "Subheading"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading"
-    }
-  ],
+  "settings": [],
   "blocks": [
     {
       "type": "badge_card",
@@ -45,12 +47,12 @@
           "id": "icon",
           "label": "Icon",
           "options": [
+            { "value": "flag", "label": "American Flag" },
+            { "value": "shield", "label": "Quality Shield" },
             { "value": "truck", "label": "Shipping Truck" },
-            { "value": "shield", "label": "Security Shield" },
-            { "value": "refresh", "label": "Returns Refresh" },
-            { "value": "star", "label": "Star Accent" }
+            { "value": "star", "label": "Purpose Star" }
           ],
-          "default": "truck"
+          "default": "flag"
         },
         {
           "type": "text",
@@ -69,9 +71,9 @@
   ],
   "presets": [
     {
-      "name": "Trust Badges",
+      "name": "Trust Badges Row",
       "blocks": [
-        { "type": "badge_card", "settings": { "icon": "star", "title": "AMERICAN OWNED", "subtitle": "Designed & printed in the USA" } },
+        { "type": "badge_card", "settings": { "icon": "flag", "title": "AMERICAN OWNED", "subtitle": "Designed & printed in the USA" } },
         { "type": "badge_card", "settings": { "icon": "shield", "title": "QUALITY CRAFTSMANSHIP", "subtitle": "Premium materials & attention to detail" } },
         { "type": "badge_card", "settings": { "icon": "truck", "title": "RELIABLE SHIPPING", "subtitle": "Fast, secure & trackable" } },
         { "type": "badge_card", "settings": { "icon": "star", "title": "PURPOSE DRIVEN", "subtitle": "Apparel with meaning that gives back" } }

@@ -1,31 +1,54 @@
 {%- comment -%}
-  Renders a trust badge icon card.
+  Renders a trust badge item matching The Amendment Company reference.
   Accepts:
-  - icon_name: {String} 'truck' | 'shield' | 'refresh' | 'star'
-  - title: {String} Card title
-  - subtitle: {String} Card subtitle
+  - icon_name: {String} 'flag' | 'truck' | 'shield' | 'star'
+  - title: {String} Badge title
+  - subtitle: {String} Badge subtitle
+  - is_last: {Boolean} Whether this item is the last one in the row (omits vertical divider)
 {%- endcomment -%}
 
-<div class="icon-card flex items-center gap-md" style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
-  <div class="flex-center" style="width: 52px; height: 52px; border-radius: var(--radius-full); background: var(--color-bg-tertiary); color: var(--color-accent-gold); shrink: 0;">
+<div class="trust-badge-item" style="display: flex; align-items: center; gap: 0.85rem; padding: 1.1rem 1.25rem; flex: 1; min-width: 220px; position: relative; {%- unless is_last -%}border-right: 1px solid #D8CEBE;{%- endunless -%}">
+  {%- comment -%} Circular Dark Border Container {%- endcomment -%}
+  <div style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #2B303A; display: flex; align-items: center; justify-content: center; shrink: 0; background: transparent; color: #2B303A;">
     {%- case icon_name -%}
-      {%- when 'truck' -%}
-        {% render 'icon-truck' %}
-      {%- when 'shield' -%}
+      {%- when 'flag' or 'american_owned' -%}
+        <svg width="22" height="15" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="American Flag">
+          <rect width="24" height="16" fill="#B22234"/>
+          <rect y="2.46" width="24" height="1.23" fill="#FFFFFF"/>
+          <rect y="4.92" width="24" height="1.23" fill="#FFFFFF"/>
+          <rect y="7.38" width="24" height="1.23" fill="#FFFFFF"/>
+          <rect y="9.84" width="24" height="1.23" fill="#FFFFFF"/>
+          <rect y="12.3" width="24" height="1.23" fill="#FFFFFF"/>
+          <rect width="9.6" height="8.61" fill="#3C3B6E"/>
+          <circle cx="2" cy="2" r="0.5" fill="#FFFFFF"/>
+          <circle cx="4.8" cy="2" r="0.5" fill="#FFFFFF"/>
+          <circle cx="7.6" cy="2" r="0.5" fill="#FFFFFF"/>
+          <circle cx="3.4" cy="4.3" r="0.5" fill="#FFFFFF"/>
+          <circle cx="6.2" cy="4.3" r="0.5" fill="#FFFFFF"/>
+          <circle cx="2" cy="6.6" r="0.5" fill="#FFFFFF"/>
+          <circle cx="4.8" cy="6.6" r="0.5" fill="#FFFFFF"/>
+          <circle cx="7.6" cy="6.6" r="0.5" fill="#FFFFFF"/>
+        </svg>
+      {%- when 'shield' or 'quality' -%}
         {% render 'icon-shield' %}
+      {%- when 'truck' or 'shipping' -%}
+        {% render 'icon-truck' %}
       {%- when 'refresh' -%}
         {% render 'icon-refresh' %}
       {%- else -%}
-        {% render 'icon-star' %}
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#2B303A">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
     {%- endcase -%}
   </div>
 
-  <div>
-    <h4 style="font-size: 1.05rem; font-family: var(--font-body); font-weight: var(--font-weight-semibold); margin-bottom: 0.2rem;">
-      {{ title | default: 'Feature Title' }}
-    </h4>
-    <p style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0;">
-      {{ subtitle | default: 'Feature subtitle detail' }}
-    </p>
+  {%- comment -%} Text Column {%- endcomment -%}
+  <div style="display: flex; flex-direction: column; text-align: left;">
+    <span style="font-size: 0.82rem; font-weight: 800; color: #0D1B2A; text-transform: uppercase; letter-spacing: 0.04em; font-family: var(--font-body); line-height: 1.1;">
+      {{ title | default: 'AMERICAN OWNED' }}
+    </span>
+    <span style="font-size: 0.74rem; color: #555555; margin-top: 3px; font-weight: 400; line-height: 1.2;">
+      {{ subtitle | default: 'Designed & printed in the USA' }}
+    </span>
   </div>
 </div>
