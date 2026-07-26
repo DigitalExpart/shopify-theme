@@ -4,36 +4,8 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "blocks": {
-        "menu_shop": {
-          "type": "link_list",
-          "settings": {
-            "heading": "SHOP",
-            "menu": "footer"
-          }
-        },
-        "menu_collections": {
-          "type": "link_list",
-          "settings": {
-            "heading": "COLLECTIONS",
-            "menu": "footer"
-          }
-        },
-        "menu_help": {
-          "type": "link_list",
-          "settings": {
-            "heading": "HELP",
-            "menu": "footer"
-          }
-        }
-      },
-      "block_order": [
-        "menu_shop",
-        "menu_collections",
-        "menu_help"
-      ],
       "settings": {
-        "brand_description": "Constitutionally inspired apparel for patriots who value freedom, faith, and family."
+        "brand_description": "Constitutionally inspired apparel, for patriots who value freedom, faith, and family."
       }
     }
   },
