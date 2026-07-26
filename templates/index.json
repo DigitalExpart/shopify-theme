@@ -5,93 +5,98 @@
       "type": "hero-banner",
       "settings": {
         "desktop_height": 650,
-        "overlay_opacity": 35,
-        "subheading": "Autumn / Winter Collection 2026",
-        "heading": "Elevate Your Every Day",
-        "text": "Discover meticulously crafted products engineered with precision aesthetics and unmatched durability.",
+        "overlay_opacity": 40,
+        "subheading": "FAITH. FAMILY. FREEDOM.",
+        "heading": "WE THE PEOPLE STAND TOGETHER",
+        "text": "Patriotic apparel for those who love this country and the values it was built on.",
         "text_alignment": "left",
-        "button_label_1": "Shop New Arrivals",
-        "button_label_2": "Explore Story"
+        "button_label_1": "SHOP NOW",
+        "button_label_2": "EXPLORE COLLECTIONS"
       }
     },
     "trust_badges": {
       "type": "trust-badges",
       "blocks": {
-        "badge_1": { "type": "badge_card", "settings": { "icon": "truck", "title": "Complimentary Shipping", "subtitle": "On all orders over $150 worldwide." } },
-        "badge_2": { "type": "badge_card", "settings": { "icon": "shield", "title": "2-Year Warranty", "subtitle": "Guaranteed craft integrity and coverage." } },
-        "badge_3": { "type": "badge_card", "settings": { "icon": "refresh", "title": "30-Day Hassle Returns", "subtitle": "Seamless exchanges and refunds." } },
-        "badge_4": { "type": "badge_card", "settings": { "icon": "star", "title": "Artisanal Integrity", "subtitle": "Sourced sustainably with premium components." } }
+        "badge_1": { "type": "badge_card", "settings": { "icon": "star", "title": "AMERICAN OWNED", "subtitle": "Designed & printed in the USA" } },
+        "badge_2": { "type": "badge_card", "settings": { "icon": "shield", "title": "QUALITY CRAFTSMANSHIP", "subtitle": "Premium materials & attention to detail" } },
+        "badge_3": { "type": "badge_card", "settings": { "icon": "truck", "title": "RELIABLE SHIPPING", "subtitle": "Fast, secure & trackable" } },
+        "badge_4": { "type": "badge_card", "settings": { "icon": "star", "title": "PURPOSE DRIVEN", "subtitle": "Apparel with meaning that gives back" } }
       },
       "block_order": ["badge_1", "badge_2", "badge_3", "badge_4"]
     },
     "brand_pillars": {
       "type": "brand-pillars",
+      "settings": {
+        "heading": "OUR BRAND PILLARS"
+      },
       "blocks": {
-        "pillar_1": { "type": "pillar", "settings": { "title": "Artisanal Heritage", "description": "Combining time-honored techniques with contemporary material science." } },
-        "pillar_2": { "type": "pillar", "settings": { "title": "Sustainable Sourcing", "description": "Certified organic and ethically harvested raw components from local guilds." } },
-        "pillar_3": { "type": "pillar", "settings": { "title": "Timeless Aesthetic", "description": "Minimalist forms designed to outlast transient fashion cycles." } }
+        "pillar_1": { "type": "pillar", "settings": { "title": "HERITAGE", "description": "Rooted in the ideals that built our nation. We honor the past to inspire the future.", "button_label": "LEARN MORE" } },
+        "pillar_2": { "type": "pillar", "settings": { "title": "QUALITY", "description": "Premium fabrics, built to last, crafted with integrity and detailed with purpose.", "button_label": "LEARN MORE" } },
+        "pillar_3": { "type": "pillar", "settings": { "title": "COMMUNITY", "description": "We stand with patriots who believe in freedom, family, and each other.", "button_label": "LEARN MORE" } }
       },
       "block_order": ["pillar_1", "pillar_2", "pillar_3"]
     },
     "shop_categories": {
       "type": "shop-categories",
-      "blocks": {
-        "cat_1": { "type": "category", "settings": { "title": "Timepieces & Leather" } },
-        "cat_2": { "type": "category", "settings": { "title": "Signature Apparel" } },
-        "cat_3": { "type": "category", "settings": { "title": "Home & Essentials" } }
+      "settings": {
+        "heading": "SHOP THE LINEUP"
       },
-      "block_order": ["cat_1", "cat_2", "cat_3"]
+      "blocks": {
+        "cat_1": { "type": "category", "settings": { "title": "PREMIUM TEES" } },
+        "cat_2": { "type": "category", "settings": { "title": "HOODIES & SWEATSHIRTS" } },
+        "cat_3": { "type": "category", "settings": { "title": "HATS & ACCESSORIES" } },
+        "cat_4": { "type": "category", "settings": { "title": "HOME & DECOR" } },
+        "cat_5": { "type": "category", "settings": { "title": "COLLECTION A" } },
+        "cat_6": { "type": "category", "settings": { "title": "COLLECTION B" } },
+        "cat_7": { "type": "category", "settings": { "title": "SERIES 01" } }
+      },
+      "block_order": ["cat_1", "cat_2", "cat_3", "cat_4", "cat_5", "cat_6", "cat_7"]
     },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "subheading": "Handpicked Favorites",
-        "heading": "Featured Collection",
-        "products_to_show": 4,
-        "enable_carousel": false
+        "subheading": "★ FEATURED PRODUCTS ★",
+        "heading": "",
+        "products_to_show": 6,
+        "enable_carousel": false,
+        "show_vendor": false
       }
     },
     "brand_story": {
       "type": "brand-story",
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "newsletter",
       "settings": {
-        "subheading": "Our Heritage & Purpose",
-        "heading": "Built for Those Who Appreciate Pure Craftsmanship",
-        "text": "<p>Founded on principles of uncompromising precision and minimalist design, our workshop brings together master artisans and innovative engineering. Each piece is designed to tell a story of endurance, elegance, and intentional living.</p>",
-        "button_label": "Read Our Full Story"
+        "heading": "A BRAND WITH MEANING",
+        "text": "More than apparel—it's a way of life. Wear your values. Live with purpose."
       }
     },
     "best_sellers": {
       "type": "best-sellers-carousel",
       "settings": {
-        "subheading": "Customer Favorites",
-        "heading": "Best Sellers",
-        "products_to_show": 6
+        "subheading": "★ BEST SELLERS ★",
+        "heading": "",
+        "products_to_show": 4
       }
     },
     "new_arrivals": {
       "type": "new-arrivals-carousel",
       "settings": {
-        "subheading": "Just Dropped",
-        "heading": "New Arrivals",
-        "products_to_show": 6
+        "subheading": "★ NEW ARRIVALS ★",
+        "heading": "",
+        "products_to_show": 4
       }
     },
     "testimonials": {
       "type": "testimonials",
       "blocks": {
-        "test_1": { "type": "testimonial", "settings": { "author": "Julian Vance", "quote": "Remarkable craft and timeless execution. Customer service was exquisite from start to delivery.", "location": "New York, USA" } },
-        "test_2": { "type": "testimonial", "settings": { "author": "Sophia Laurent", "quote": "Every detail feels curated. The materials used are exceptional and feel far superior to mass market offerings.", "location": "Paris, France" } },
-        "test_3": { "type": "testimonial", "settings": { "author": "Marcus Sterling", "quote": "Solid weight, flawless finishing, and arrived beautifully packaged within 48 hours.", "location": "Tokyo, Japan" } }
+        "test_1": { "type": "testimonial", "settings": { "author": "Michael T.", "quote": "Outstanding quality and fast shipping. Proud to support an American brand that stands for something." } },
+        "test_2": { "type": "testimonial", "settings": { "author": "Sarah K.", "quote": "The designs are bold, the fit is perfect, and the message is what this country needs right now." } },
+        "test_3": { "type": "testimonial", "settings": { "author": "James R.", "quote": "Every piece I own from here starts conversations. Great products and even better mission." } }
       },
       "block_order": ["test_1", "test_2", "test_3"]
-    },
-    "newsletter": {
-      "type": "newsletter",
-      "settings": {
-        "subheading": "Stay Connected",
-        "heading": "Join the Inner Circle",
-        "text": "Subscribe to receive private preview access, editorial stories, and complimentary concierge support."
-      }
     }
   },
   "order": [
@@ -101,9 +106,9 @@
     "shop_categories",
     "featured_collection",
     "brand_story",
+    "newsletter",
     "best_sellers",
     "new_arrivals",
-    "testimonials",
-    "newsletter"
+    "testimonials"
   ]
 }

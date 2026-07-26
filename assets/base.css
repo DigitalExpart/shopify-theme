@@ -6,21 +6,23 @@
    1. DESIGN SYSTEM TOKENS & CSS VARIABLES
    -------------------------------------------------------------------------- */
 :root {
-  /* Color Palette - Modern Premium (Cream, Navy, Charcoal, Gold, Rich Red) */
-  --color-bg-primary: #FAF8F5;
+  /* Color Palette - Patriotic Premium (Cream, Deep Red, Navy, Charcoal, Gold) */
+  --color-bg-primary: #F8F5F0;
   --color-bg-secondary: #FFFFFF;
-  --color-bg-tertiary: #F4EFE6;
+  --color-bg-tertiary: #F1ECE4;
   --color-text-primary: #0D1B2A;
-  --color-text-secondary: #334155;
-  --color-text-muted: #5A6578;
+  --color-text-secondary: #2B3A4A;
+  --color-text-muted: #64748B;
   --color-accent-gold: #C5A059;
-  --color-accent-gold-hover: #B08C46;
-  --color-cta-bg: #C02626;
-  --color-cta-hover: #9E1B1B;
+  --color-accent-gold-hover: #A8833E;
+  --color-cta-bg: #A31C1C;
+  --color-cta-hover: #801414;
   --color-cta-text: #FFFFFF;
-  --color-border: #E6E1D8;
-  --color-border-dark: #CFC7B9;
-  --color-overlay: rgba(13, 27, 42, 0.45);
+  --color-border: #E5DFC8;
+  --color-border-dark: #D4CDBC;
+  --color-overlay: rgba(13, 27, 42, 0.55);
+  --color-announcement-bg: #8B1E1E;
+  --color-announcement-text: #F8F5F0;
   --color-error: #D32F2F;
   --color-success: #2E7D32;
 

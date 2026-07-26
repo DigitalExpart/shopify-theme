@@ -1,38 +1,46 @@
 {%- comment -%}
-  Testimonials & Client Reviews Section
+  Testimonials & Client Reviews Section - The Amendment Company
 {%- endcomment -%}
 
-<div class="testimonials section-spacing" style="background-color: var(--color-bg-primary);">
+<div class="testimonials section-spacing" style="background-color: var(--color-bg-primary); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
   <div class="page-width">
     <div style="text-align: center; margin-bottom: 3rem;">
-      <span class="subheading">{{ section.settings.subheading | default: 'Client Endorsements' }}</span>
-      <h2>{{ section.settings.heading | default: 'Words of Appreciation' }}</h2>
+      <span class="subheading" style="font-size: 0.9rem; letter-spacing: 0.15em;">
+        ★ REVIEWS ★
+      </span>
     </div>
 
-    <div class="grid grid--3-col">
-      {%- for block in section.blocks -%}
-        <div class="testimonial-card" style="background: var(--color-bg-secondary); border-radius: var(--radius-md); padding: 2rem; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            {% render 'rating-stars', rating: block.settings.rating %}
-            <p style="font-size: 1.05rem; font-style: italic; color: var(--color-text-primary); line-height: 1.6; margin-top: 1.25rem; margin-bottom: 1.5rem;">
-              "{{ block.settings.quote }}"
-            </p>
-          </div>
-          <div class="flex items-center gap-md" style="border-top: 1px solid var(--color-border); padding-top: 1.25rem;">
-            <div style="width: 44px; height: 44px; border-radius: var(--radius-full); background: var(--color-bg-tertiary); display: flex; align-items: center; justify-content: center; font-weight: var(--font-weight-bold); color: var(--color-text-primary);">
-              {{ block.settings.author | slice: 0, 1 }}
-            </div>
+    <div class="flex items-center gap-xl" style="flex-wrap: wrap;">
+
+      <div class="grid grid--3-col" style="flex: 1; min-width: 300px;">
+        {%- for block in section.blocks -%}
+          <div class="testimonial-card" style="background: var(--color-bg-secondary); border-radius: var(--radius-md); padding: 1.75rem; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-              <h4 style="font-size: 0.95rem; font-family: var(--font-body); font-weight: var(--font-weight-bold); margin: 0;">
-                {{ block.settings.author }}
-              </h4>
-              <span style="font-size: 0.75rem; color: var(--color-accent-gold); font-weight: var(--font-weight-medium);">
-                Verified Buyer &bull; {{ block.settings.location }}
-              </span>
+              <p style="font-size: 0.95rem; font-style: italic; color: var(--color-text-primary); line-height: 1.6; margin-bottom: 1.25rem;">
+                "{{ block.settings.quote }}"
+              </p>
+            </div>
+            <div class="flex-between" style="border-top: 1px solid var(--color-border); padding-top: 1rem;">
+              <div>
+                <h4 style="font-size: 0.95rem; font-family: var(--font-body); font-weight: var(--font-weight-bold); margin: 0;">
+                  {{ block.settings.author }}
+                </h4>
+              </div>
+              {% render 'rating-stars', rating: block.settings.rating %}
             </div>
           </div>
+        {%- endfor -%}
+      </div>
+
+      {%- comment -%} Circular Stamp Badge {%- endcomment -%}
+      <div class="flex-center" style="width: 140px; height: 140px; border-radius: var(--radius-full); border: 2px dashed var(--color-accent-gold); padding: 0.5rem; text-align: center; color: var(--color-text-primary); background: var(--color-bg-secondary); box-shadow: var(--shadow-sm); margin: 0 auto;">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; border: 1px solid var(--color-border); border-radius: var(--radius-full); padding: 0.5rem;">
+          <span style="font-size: 0.65rem; font-weight: var(--font-weight-bold); letter-spacing: 0.1em; color: var(--color-accent-gold); text-transform: uppercase;">USE YOUR VALUES</span>
+          <span style="font-size: 1.1rem; font-weight: bold; margin: 2px 0;">1776</span>
+          <span style="font-size: 0.6rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em;">ESTD. USA</span>
         </div>
-      {%- endfor -%}
+      </div>
+
     </div>
   </div>
 </div>
@@ -41,20 +49,7 @@
 {
   "name": "Testimonials",
   "max_blocks": 3,
-  "settings": [
-    {
-      "type": "text",
-      "id": "subheading",
-      "label": "Subheading",
-      "default": "Client Endorsements"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Words of Appreciation"
-    }
-  ],
+  "settings": [],
   "blocks": [
     {
       "type": "testimonial",
@@ -73,19 +68,13 @@
           "type": "textarea",
           "id": "quote",
           "label": "Quote",
-          "default": "The attention to detail and tactile quality surpassed my highest expectations. Truly an investment piece."
+          "default": "Outstanding quality and fast shipping. Proud to support an American brand that stands for something."
         },
         {
           "type": "text",
           "id": "author",
           "label": "Author Name",
-          "default": "Eleanor Vance"
-        },
-        {
-          "type": "text",
-          "id": "location",
-          "label": "Location",
-          "default": "London, UK"
+          "default": "Michael T."
         }
       ]
     }
@@ -94,9 +83,9 @@
     {
       "name": "Testimonials",
       "blocks": [
-        { "type": "testimonial", "settings": { "author": "Julian Vance", "quote": "Remarkable craft and timeless execution. Customer service was exquisite from start to delivery.", "location": "New York, USA" } },
-        { "type": "testimonial", "settings": { "author": "Sophia Laurent", "quote": "Every detail feels curated. The materials used are exceptional and feel far superior to mass market offerings.", "location": "Paris, France" } },
-        { "type": "testimonial", "settings": { "author": "Marcus Sterling", "quote": "Solid weight, flawless finishing, and arrived beautifully packaged within 48 hours.", "location": "Tokyo, Japan" } }
+        { "type": "testimonial", "settings": { "author": "Michael T.", "quote": "Outstanding quality and fast shipping. Proud to support an American brand that stands for something." } },
+        { "type": "testimonial", "settings": { "author": "Sarah K.", "quote": "The designs are bold, the fit is perfect, and the message is what this country needs right now." } },
+        { "type": "testimonial", "settings": { "author": "James R.", "quote": "Every piece I own from here starts conversations. Great products and even better mission." } }
       ]
     }
   ]

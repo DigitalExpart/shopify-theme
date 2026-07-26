@@ -12,11 +12,14 @@
 
     {%- comment -%} Brand Logo {%- endcomment -%}
     <div class="header__logo">
-      <a href="{{ routes.root_url }}" style="font-family: var(--font-heading); font-size: 1.65rem; font-weight: var(--font-weight-bold); color: var(--color-text-primary); text-transform: uppercase; letter-spacing: 0.05em;">
+      <a href="{{ routes.root_url }}" style="font-family: var(--font-heading); font-size: 1.45rem; font-weight: var(--font-weight-bold); color: var(--color-text-primary); text-transform: uppercase; letter-spacing: 0.08em; display: flex; align-items: center; gap: 0.5rem;">
         {%- if section.settings.logo != blank -%}
-          <img src="{{ section.settings.logo | image_url: width: 300 }}" alt="{{ shop.name | escape }}" width="150" height="40">
+          <img src="{{ section.settings.logo | image_url: width: 320 }}" alt="{{ shop.name | escape }}" width="160" height="40">
         {%- else -%}
-          {{ shop.name }}
+          <span style="display: flex; flex-direction: column; text-align: center; line-height: 1.1;">
+            <span style="font-size: 1.25rem; letter-spacing: 0.05em; font-family: var(--font-heading);">THE AMENDMENT COMPANY</span>
+            <span style="font-size: 0.75rem; letter-spacing: 0.25em; color: var(--color-accent-gold); font-weight: var(--font-weight-semibold);">&#8212; 1776 &#8212;</span>
+          </span>
         {%- endif -%}
       </a>
     </div>

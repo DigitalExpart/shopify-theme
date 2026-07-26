@@ -1,13 +1,13 @@
 {%- comment -%}
-  Trust Badges Section
+  Trust Badges Section - The Amendment Company
 {%- endcomment -%}
 
-<div class="trust-badges section-spacing" style="background-color: var(--color-bg-tertiary); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+<div class="trust-badges section-spacing" style="background-color: var(--color-bg-tertiary); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding-top: 2rem; padding-bottom: 2rem;">
   <div class="page-width">
     {%- if section.settings.heading != blank -%}
-      <div style="text-align: center; margin-bottom: 2.5rem;">
+      <div style="text-align: center; margin-bottom: 2rem;">
         <span class="subheading">{{ section.settings.subheading }}</span>
-        <h2 style="font-size: 2rem;">{{ section.settings.heading }}</h2>
+        <h2 style="font-size: 1.85rem;">{{ section.settings.heading }}</h2>
       </div>
     {%- endif -%}
 
@@ -27,14 +27,12 @@
     {
       "type": "text",
       "id": "subheading",
-      "label": "Subheading",
-      "default": "Why Choose Us"
+      "label": "Subheading"
     },
     {
       "type": "text",
       "id": "heading",
-      "label": "Heading",
-      "default": "Uncompromising Quality & Service"
+      "label": "Heading"
     }
   ],
   "blocks": [
@@ -58,13 +56,13 @@
           "type": "text",
           "id": "title",
           "label": "Title",
-          "default": "Complimentary Delivery"
+          "default": "AMERICAN OWNED"
         },
         {
           "type": "text",
           "id": "subtitle",
           "label": "Subtitle",
-          "default": "On all orders over $150 worldwide."
+          "default": "Designed & printed in the USA"
         }
       ]
     }
@@ -73,10 +71,10 @@
     {
       "name": "Trust Badges",
       "blocks": [
-        { "type": "badge_card", "settings": { "icon": "truck", "title": "Complimentary Delivery", "subtitle": "On all orders over $150 worldwide." } },
-        { "type": "badge_card", "settings": { "icon": "shield", "title": "2-Year Warranty", "subtitle": "Guaranteed craft integrity and coverage." } },
-        { "type": "badge_card", "settings": { "icon": "refresh", "title": "30-Day Hassle Returns", "subtitle": "Seamless exchanges and refunds." } },
-        { "type": "badge_card", "settings": { "icon": "star", "title": "Artisanal Integrity", "subtitle": "Sourced sustainably with premium components." } }
+        { "type": "badge_card", "settings": { "icon": "star", "title": "AMERICAN OWNED", "subtitle": "Designed & printed in the USA" } },
+        { "type": "badge_card", "settings": { "icon": "shield", "title": "QUALITY CRAFTSMANSHIP", "subtitle": "Premium materials & attention to detail" } },
+        { "type": "badge_card", "settings": { "icon": "truck", "title": "RELIABLE SHIPPING", "subtitle": "Fast, secure & trackable" } },
+        { "type": "badge_card", "settings": { "icon": "star", "title": "PURPOSE DRIVEN", "subtitle": "Apparel with meaning that gives back" } }
       ]
     }
   ]

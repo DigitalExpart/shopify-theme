@@ -5,27 +5,35 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "menu_1": {
+        "menu_shop": {
           "type": "link_list",
           "settings": {
-            "heading": "Explore",
+            "heading": "SHOP",
             "menu": "footer"
           }
         },
-        "menu_2": {
+        "menu_collections": {
           "type": "link_list",
           "settings": {
-            "heading": "Customer Service",
+            "heading": "COLLECTIONS",
+            "menu": "footer"
+          }
+        },
+        "menu_help": {
+          "type": "link_list",
+          "settings": {
+            "heading": "HELP",
             "menu": "footer"
           }
         }
       },
       "block_order": [
-        "menu_1",
-        "menu_2"
+        "menu_shop",
+        "menu_collections",
+        "menu_help"
       ],
       "settings": {
-        "brand_description": "Crafted for connoisseurs of timeless quality and modern refinement."
+        "brand_description": "Constitutionally inspired apparel for patriots who value freedom, faith, and family."
       }
     }
   },

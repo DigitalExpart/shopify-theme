@@ -1,45 +1,46 @@
 {%- comment -%}
-  Global Footer Section
+  Global Footer Section - The Amendment Company 1776
 {%- endcomment -%}
 
-<footer class="footer" style="background-color: var(--color-text-primary); color: #FAF8F5; padding-top: 4rem; padding-bottom: 2rem; margin-top: auto; border-top: 1px solid var(--color-border-dark);">
+<footer class="footer" style="background-color: var(--color-text-primary); color: #FAF8F5; padding-top: 4rem; padding-bottom: 2rem; margin-top: auto; border-top: 2px solid var(--color-accent-gold);">
   <div class="page-width">
-    <div class="grid grid--4-col" style="margin-bottom: 3rem;">
+    <div class="grid grid--4-col" style="margin-bottom: 3rem; gap: 2rem;">
 
-      {%- comment -%} Column 1: Brand Info {%- endcomment -%}
+      {%- comment -%} Column 1: Brand Summary {%- endcomment -%}
       <div>
-        <h3 style="font-family: var(--font-heading); color: #FFFFFF; font-size: 1.5rem; margin-bottom: 1rem; text-transform: uppercase;">
-          {{ shop.name }}
+        <h3 style="font-family: var(--font-heading); color: #FFFFFF; font-size: 1.35rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; display: flex; flex-direction: column;">
+          <span>THE AMENDMENT COMPANY</span>
+          <span style="font-size: 0.75rem; color: var(--color-accent-gold); letter-spacing: 0.2em; font-weight: normal; margin-top: 0.2rem;">&#8212; 1776 &#8212;</span>
         </h3>
-        <p style="color: #94A3B8; font-size: 0.9rem; margin-bottom: 1.5rem;">
-          {{ section.settings.brand_description | default: 'Crafted for connoisseurs of timeless quality and modern refinement.' }}
+        <p style="color: #94A3B8; font-size: 0.85rem; line-height: 1.6; margin-bottom: 1.5rem;">
+          {{ section.settings.brand_description | default: 'Constitutionally inspired apparel for patriots who value freedom, faith, and family.' }}
         </p>
         <div class="flex items-center gap-sm" style="color: var(--color-accent-gold);">
-          {%- if settings.social_instagram_link != blank -%}
-            <a href="{{ settings.social_instagram_link }}" class="icon-btn" aria-label="Instagram" style="color: inherit;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          {%- if settings.social_facebook_link != blank -%}
+            <a href="{{ settings.social_facebook_link }}" class="icon-btn" aria-label="Facebook" style="color: inherit; width: 36px; height: 36px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
             </a>
           {%- endif -%}
-          {%- if settings.social_facebook_link != blank -%}
-            <a href="{{ settings.social_facebook_link }}" class="icon-btn" aria-label="Facebook" style="color: inherit;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          {%- if settings.social_instagram_link != blank -%}
+            <a href="{{ settings.social_instagram_link }}" class="icon-btn" aria-label="Instagram" style="color: inherit; width: 36px; height: 36px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
             </a>
           {%- endif -%}
         </div>
       </div>
 
-      {%- comment -%} Column 2 & 3: Footer Menus {%- endcomment -%}
+      {%- comment -%} Column 2, 3, 4: Footer Link Menus {%- endcomment -%}
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'link_list' -%}
             <div>
-              <h4 style="font-family: var(--font-body); color: #FFFFFF; font-size: 1.05rem; font-weight: var(--font-weight-semibold); margin-bottom: 1.25rem;">
+              <h4 style="font-family: var(--font-body); color: #FFFFFF; font-size: 0.95rem; font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem;">
                 {{ block.settings.heading }}
               </h4>
-              <ul style="display: flex; flex-direction: column; gap: 0.65rem;">
+              <ul style="display: flex; flex-direction: column; gap: 0.55rem;">
                 {%- for link in block.settings.menu.links -%}
                   <li>
-                    <a href="{{ link.url }}" style="color: #94A3B8; font-size: 0.9rem; transition: color var(--transition-fast);" onmouseenter="this.style.color='#C5A059'" onmouseleave="this.style.color='#94A3B8'">
+                    <a href="{{ link.url }}" style="color: #94A3B8; font-size: 0.85rem; transition: color var(--transition-fast);" onmouseenter="this.style.color='#C5A059'" onmouseleave="this.style.color='#94A3B8'">
                       {{ link.title }}
                     </a>
                   </li>
@@ -49,34 +50,15 @@
         {%- endcase -%}
       {%- endfor -%}
 
-      {%- comment -%} Column 4: Newsletter {%- endcomment -%}
-      <div>
-        <h4 style="font-family: var(--font-body); color: #FFFFFF; font-size: 1.05rem; font-weight: var(--font-weight-semibold); margin-bottom: 1rem;">
-          Newsletter
-        </h4>
-        <p style="color: #94A3B8; font-size: 0.85rem; margin-bottom: 1rem;">
-          Subscribe to receive exclusive insights and product launches.
-        </p>
-        {% form 'customer', class: 'footer-newsletter-form' %}
-          <input type="hidden" name="contact[tags]" value="newsletter">
-          <div class="field">
-            <input type="email" name="contact[email]" class="field__input" placeholder="Your email address" required style="background: #1B293A; border-color: #334155; color: #FFFFFF;">
-          </div>
-          <button type="submit" class="btn btn--cta btn--full btn--sm" style="margin-top: 0.5rem; background-color: var(--color-cta-bg); color: #FFFFFF;">
-            Subscribe
-          </button>
-        {% endform %}
-      </div>
-
     </div>
 
-    {%- comment -%} Sub-footer Copyright & Payments {%- endcomment -%}
-    <div class="flex-between" style="border-top: 1px solid #1E293B; padding-top: 1.75rem; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem; color: #64748B;">
+    {%- comment -%} Sub-footer Copyright & Payment Options {%- endcomment -%}
+    <div class="flex-between" style="border-top: 1px solid #1E293B; padding-top: 1.75rem; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; color: #64748B;">
       <div>
-        &copy; {{ 'now' | date: "%Y" }}, {{ shop.name }}. All Rights Reserved.
+        &copy; {{ 'now' | date: "%Y" }} The Amendment Company. All Rights Reserved.
       </div>
       <div class="flex items-center gap-sm">
-        <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">Secure Checkout</span>
+        <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">VISA &bull; MASTERCARD &bull; AMEX &bull; APPLE PAY &bull; GOOGLE PAY &bull; PAYPAL</span>
       </div>
     </div>
   </div>
@@ -90,7 +72,7 @@
       "type": "textarea",
       "id": "brand_description",
       "label": "Brand Description",
-      "default": "Crafted for connoisseurs of timeless quality and modern refinement."
+      "default": "Constitutionally inspired apparel for patriots who value freedom, faith, and family."
     }
   ],
   "blocks": [
@@ -102,7 +84,7 @@
           "type": "text",
           "id": "heading",
           "label": "Heading",
-          "default": "Quick Links"
+          "default": "SHOP"
         },
         {
           "type": "link_list",
